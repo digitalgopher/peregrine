@@ -5,6 +5,9 @@ import { getPlayer } from './../actions';
 import SearchBox from './SearchBox';
 import Player from './../components/Player';
 
+
+require('./../../style/app.scss');
+
 class App extends Component {
 
 	constructor (props) {

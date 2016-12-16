@@ -4957,7 +4957,14 @@
 	function getPlayer(name) {
 		return function (dispatch) {
 			dispatch(gettingPlayer(name));
-			return _axios2.default.get('/api/v1/gopher').then(function (response) {
+	
+			var data = {
+				params: {
+					name: name
+				}
+			};
+	
+			return _axios2.default.get('/api/v1/gopher', data).then(function (response) {
 				dispatch(getPlayerSuccess(response.data, name));
 			});
 		};
@@ -12032,6 +12039,10 @@
 	
 	var _actions = __webpack_require__(35);
 	
+	var _SearchBox = __webpack_require__(250);
+	
+	var _SearchBox2 = _interopRequireDefault(_SearchBox);
+	
 	var _Player = __webpack_require__(120);
 	
 	var _Player2 = _interopRequireDefault(_Player);
@@ -12085,11 +12096,7 @@
 						this.props.title,
 						' '
 					),
-					_react2.default.createElement(
-						'button',
-						{ onClick: this.click },
-						' Get Gopher '
-					),
+					_react2.default.createElement(_SearchBox2.default, null),
 					plr
 				);
 			}
@@ -25710,6 +25717,90 @@
 		return module;
 	}
 
+
+/***/ },
+/* 250 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(14);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactRedux = __webpack_require__(92);
+	
+	var _actions = __webpack_require__(35);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var SearchBox = function (_Component) {
+		_inherits(SearchBox, _Component);
+	
+		function SearchBox(props) {
+			_classCallCheck(this, SearchBox);
+	
+			var _this = _possibleConstructorReturn(this, (SearchBox.__proto__ || Object.getPrototypeOf(SearchBox)).call(this, props));
+	
+			_this.handleChange = _this.handleChange.bind(_this);
+			_this.search = _this.search.bind(_this);
+			_this.state = {
+				value: ''
+			};
+			return _this;
+		}
+	
+		_createClass(SearchBox, [{
+			key: 'handleChange',
+			value: function handleChange(e) {
+				this.setState({
+					value: e.target.value
+				});
+			}
+		}, {
+			key: 'search',
+			value: function search() {
+				this.props.getPlayer(this.state.value);
+			}
+		}, {
+			key: 'render',
+			value: function render() {
+				return _react2.default.createElement(
+					'div',
+					null,
+					_react2.default.createElement('input', { type: 'text',
+						onChange: this.handleChange,
+						value: this.state.value,
+						placeholder: 'search for a player' }),
+					_react2.default.createElement(
+						'button',
+						{ onClick: this.search },
+						' Search '
+					)
+				);
+			}
+		}]);
+	
+		return SearchBox;
+	}(_react.Component);
+	
+	var mapStateToProps = function mapStateToProps(state, ownProps) {
+		return {};
+	};
+	
+	exports.default = (0, _reactRedux.connect)(mapStateToProps, { getPlayer: _actions.getPlayer })(SearchBox);
 
 /***/ }
 /******/ ]);

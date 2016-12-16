@@ -30,7 +30,14 @@ export const GET_PLAYER = 'GET_PLAYER';
 export function getPlayer ( name ) {
 	return function (dispatch) {
 		dispatch( gettingPlayer( name ) );
-		return axios.get('/api/v1/gopher').then( function (response) {
+
+		let data = {
+			params: {
+				name: name
+			}
+		};
+
+		return axios.get('/api/v1/gopher', data).then( function (response) {
 			dispatch( getPlayerSuccess( response.data, name ));
 		});
 	}

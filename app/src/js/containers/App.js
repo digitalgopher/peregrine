@@ -2,6 +2,7 @@ import React, { PropTypes, Component } from 'react';
 import { connect } from 'react-redux';
 import { getPlayer } from './../actions';
 
+import SearchBox from './SearchBox';
 import Player from './../components/Player';
 
 class App extends Component {
@@ -26,7 +27,7 @@ class App extends Component {
 		return (
 			<div>
 				<h1> {this.props.title} </h1>
-				<button onClick={ this.click }> Get Gopher </button>
+				<SearchBox></SearchBox>
 				{ plr }
 			</div>
 		)

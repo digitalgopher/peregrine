@@ -20,8 +20,11 @@ app.use('/build', express.static(path.join(__dirname, '../app/build')));
 // app.post('/api/v1/auth/login', routes.auth.login);
 app.get('/api/v1/gopher', function (req, res) {
 	var options = {
-		url: 'https://playoverwatch.com/en-us/career/xbl/Gopher',
+		url: 'https://playoverwatch.com/en-us/career/xbl/' + req.query.name
 	};
+
+	console.log( options.url );
+
 	request( options, function (error, response, body) {
 		if ( error ) {
 			res.send('uh oh');
@@ -128,6 +131,7 @@ app.get('/api/v1/gopher', function (req, res) {
 // 	var options = {
 // 		uri: mingleUrl + '/cards/' + req.params.cardNumber + '.xml',
 // 		headers: {
+// 			'Authorization': 'Basic blah',
 // 			'content-type': 'application/xml'
 // 		}
 // 	}

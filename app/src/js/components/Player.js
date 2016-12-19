@@ -12,7 +12,7 @@ class Player extends Component {
 		let compChars = this.props.value.competitive;
 
 		var chars = compChars.map( c => {
-			return <Character value={c}></Character>
+			return <Character key={ c.value } character={c}></Character>
 		});
 
 		return (

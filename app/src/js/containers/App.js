@@ -1,6 +1,6 @@
 import React, { PropTypes, Component } from 'react';
 import { connect } from 'react-redux';
-import { getPlayer } from './../actions';
+import { getPlayer, initApp } from './../actions';
 
 import SearchBox from './SearchBox';
 import Player from './../components/Player';
@@ -13,6 +13,10 @@ class App extends Component {
 	constructor (props) {
 		super(props);
 		this.click = this.click.bind( this );
+	}
+
+	componentDidMount () {
+		this.props.initApp();
 	}
 
 	click () {
@@ -45,7 +49,7 @@ const mapStateToProps = (state, ownProps) => ({
 
 
 export default connect(mapStateToProps, {
-  getPlayer
+  getPlayer, initApp
 })(App)
 
 

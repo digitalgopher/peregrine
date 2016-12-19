@@ -1,6 +1,8 @@
 import React ,{ Component } from 'react';
 import Stat from './Stat';
 
+require('./../../style/stat.scss');
+
 
 class StatCategory extends Component {
 	constructor (props) {
@@ -10,11 +12,11 @@ class StatCategory extends Component {
 
 	render () {
 		let stats = Object.keys( this.props.stats ).map( statName => {
-			return <Stat name={ statName } value= { this.props.stats[ statName ]}></Stat>
+			return <Stat key={statName } name={ statName } value= { this.props.stats[ statName ]}></Stat>
 		})
 		return (
-			<div>
-				<h3>{ this.props.name }</h3>
+			<div className="statCategory">
+				<div>{ this.props.name }</div>
 				{ stats }
 			</div>
 		)

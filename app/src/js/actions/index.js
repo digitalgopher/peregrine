@@ -54,9 +54,10 @@ export const SEARCH_PLAYER = 'SEARCH_PLAYER';
 export function searchPlayer (name) {
 	return function (dispatch) {
 		return firebaseModule.searchPlayer( name ).then( function (data) {
-			dispatch( playerSearchAddedToQueue (data) );
+			dispatch( playerSearchAddedToQueue ( name ) );
 			firebaseModule.watchPlayer( name, function ( player ) {
 				dispatch( playerSearchSuccess(player, name ) );
+				firebaseModule.unwatchPlayer( name );
 			});
 		});
 	}
@@ -74,6 +75,7 @@ function playerSearchSuccess ( playerData, name ) {
 export const PLAYER_SEARCH_ADDED_TO_QUEUE = 'PLAYER_SEARCH_ADDED_TO_QUEUE'
 export function playerSearchAddedToQueue (data) {
 	return {
-		type: PLAYER_SEARCH_ADDED_TO_QUEUE
+		type: PLAYER_SEARCH_ADDED_TO_QUEUE,
+		name: data
 	}
 }

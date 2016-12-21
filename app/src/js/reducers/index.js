@@ -5,7 +5,8 @@ import {
 	GET_PLAYER_SUCCESS,
 	GETTING_PLAYER,
 	SEARCH_PLAYER,
-	PLAYER_SEARCH_SUCCESS
+	PLAYER_SEARCH_SUCCESS,
+	PLAYER_SEARCH_ADDED_TO_QUEUE
 	 } from './../actions';
 
 
@@ -24,8 +25,12 @@ const initialState = {
 function app ( state = initialState.app, action ) {
 	switch (action.type) {
 		case SEARCH_PLAYER:
-			return Object.assign( {}, app, { 
+			return Object.assign( {}, state, { 
 				searchedPlayer: action.name
+			});
+		case PLAYER_SEARCH_SUCCESS:
+			return Object.assign( {}, state, {
+
 			});
 		default:
 			return state;
@@ -40,15 +45,17 @@ function ui (state = initialState.ui, action ) {
 			});
 		case GET_PLAYER:
 			return state;
+		case PLAYER_SEARCH_ADDED_TO_QUEUE:
 		case GETTING_PLAYER:
 			return {
 				title: 'Getting ' + action.name,
 				player: null,
 			};
+		case PLAYER_SEARCH_SUCCESS:
 		case GET_PLAYER_SUCCESS:
 			return {
 				title: 'Stats for ' + action.name,
-				player: action.data
+				player: action.player
 			};
 		case INIT_APP:
 			return { title: 'GopherWatch' };

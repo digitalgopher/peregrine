@@ -8,11 +8,13 @@ class Player extends Component {
 	}
 
 	render () {
-		let qpChars = this.props.value.quickPlay;
-		let compChars = this.props.value.competitive;
+		let qpChars = this.props.value.quickPlayStats;
+		let compChars = this.props.value.compStats;
 
-		var chars = compChars.map( c => {
-			return <Character key={ c.value } character={c}></Character>
+		let compCharacterValues = Object.keys( compChars );
+
+		var chars = compCharacterValues.map( c => {
+			return <Character key={ compChars[c].value } character={compChars[c]}></Character>
 		});
 
 		return (

@@ -35,7 +35,7 @@ class FirebaseModule {
 		});
 	}
 
-	unwatchPlayer () {
+	unwatchPlayer ( name ) {
 		this.playerRef.off();
 	}
 
@@ -47,9 +47,6 @@ class FirebaseModule {
 		};
 
 		updates[ 'SearchQueue/' + userKey ] = searchItem;
-
-
-
 		return firebase.database().ref().update( updates );
 	}
 }

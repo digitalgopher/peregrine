@@ -1,0 +1,81 @@
+'use strict'
+var cheerio = require('cheerio');
+
+
+class Parser {
+	constructor ( dom ) {
+		this.$ = cheerio.load( dom );
+		this.scrapeGameType = this.scrapeGameType.bind( this );
+	}
+
+	scrapeGameType ( gameType ) {
+		let characters = {};
+		let chars = this.$(`#${gameType} select[data-group-id="stats"] option`);
+
+		//for each character.....
+		for ( var charCount = 0; charCount < chars.length; charCount++) {
+			let characterName = chars[ charCount ].attribs['option-id'];
+			let characterValue = chars[charCount].attribs.value;
+			let characterSelectorString = `#${gameType} *[data-category-id="${characterValue}"] table`;
+			let statTables = this.$(characterSelectorString);		
+
+			let currentCharacter = {
+				name: characterName,
+				value: characterValue,
+				stats: {}
+			};
+
+			//for each stat table....
+			for (var statTableCount = 0; statTableCount < statTables.length; statTableCount++) {
+				let statHeader = this.$( statTables[statTableCount]).find('thead span').html();
+				let innerStatNodes = this.$( statTables[statTableCount]).find('tbody tr' );
+				let statCategory = {};
+
+				//for each individual stat....
+				for (var statCount = 0; statCount < innerStatNodes.length; statCount++) {
+					let statName = this.$( innerStatNodes[statCount]).children().first().html().trim();
+					let statValue = this.$( innerStatNodes[statCount]).children().last().html();
+					statCategory[ encodeURIComponent(statName) ] = {
+						name: statName,
+						value: parseInt( statValue )
+					}
+				}
+
+				currentCharacter.stats[ statHeader ] = statCategory;
+			}
+
+			characters[ characterValue ] = currentCharacter;
+		}
+
+		return characters;
+	}
+
+	scrapePlayerData() {
+		let playerData = {};
+		//image 
+		let avatarSelector = '#overview-section .masthead-player img';
+		let avatarSrc = this.$( avatarSelector ).attr('src');	
+		//comp score
+		let compScoreSelector = `.competitive-rank div`;
+		let compScore = parseInt( this.$( compScoreSelector ).html() );
+
+
+
+		playerData.avatarUrl = avatarSrc;
+		playerData.SR = compScore;
+
+		return playerData;
+	}
+
+	parse ( ) {
+		let quickplayStats = this.scrapeGameType( 'quickplay' );
+		let compStats = this.scrapeGameType('competitive');
+		let playerInfo = this.scrapePlayerData();
+		return {
+			quickPlayStats: quickplayStats,
+			compStats: compStats,
+			playerInfo: playerInfo
+		}
+	}
+}
+module.exports = Parser;

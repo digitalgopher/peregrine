@@ -12,7 +12,8 @@ class StatCategory extends Component {
 
 	render () {
 		let stats = Object.keys( this.props.stats ).map( statName => {
-			return <Stat key={statName } name={ statName } value= { this.props.stats[ statName ]}></Stat>
+			let statObj = this.props.stats[ statName ];
+			return <Stat key={ statName } name={ statObj.name } value= { statObj.value }></Stat>
 		})
 		return (
 			<div className="statCategory">

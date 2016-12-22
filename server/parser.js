@@ -17,7 +17,7 @@ class Parser {
 			let characterName = chars[ charCount ].attribs['option-id'];
 			let characterValue = chars[charCount].attribs.value;
 			let characterSelectorString = `#${gameType} *[data-category-id="${characterValue}"] table`;
-			let statTables = this.$(characterSelectorString);		
+			let statTables = this.$(characterSelectorString);
 
 			let currentCharacter = {
 				name: characterName,
@@ -30,12 +30,14 @@ class Parser {
 				let statHeader = this.$( statTables[statTableCount]).find('thead span').html();
 				let innerStatNodes = this.$( statTables[statTableCount]).find('tbody tr' );
 				let statCategory = {};
+				statHeader = statHeader.replace(/-|\s/g, '');
 
 				//for each individual stat....
 				for (var statCount = 0; statCount < innerStatNodes.length; statCount++) {
 					let statName = this.$( innerStatNodes[statCount]).children().first().html().trim();
 					let statValue = this.$( innerStatNodes[statCount]).children().last().html();
-					statCategory[ encodeURIComponent(statName) ] = {
+					let fixedStatName =  statName.replace(/-|\s/g, '');
+					statCategory[ encodeURIComponent(fixedStatName) ] = {
 						name: statName,
 						value: parseInt( statValue )
 					}
@@ -52,13 +54,16 @@ class Parser {
 
 	scrapePlayerData() {
 		let playerData = {};
-		//image 
+		//image
 		let avatarSelector = '#overview-section .masthead-player img';
-		let avatarSrc = this.$( avatarSelector ).attr('src');	
+		let avatarSrc = this.$( avatarSelector ).attr('src');
 		//comp score
 		let compScoreSelector = `.competitive-rank div`;
 		let compScore = parseInt( this.$( compScoreSelector ).html() );
 
+		if ( isNaN(compScore) ) {
+			compScore = 0;
+		}
 
 
 		playerData.avatarUrl = avatarSrc;

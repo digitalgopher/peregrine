@@ -22,7 +22,7 @@ var app = express();
 
 
 var ___APP___ = path.join(__dirname, '..', 'app');
-
+const _ALL_HEROES_KEY_ = '0x02E00000FFFFFFFF';
 
 app.use('/build', express.static(path.join(__dirname, '../app/build')));
 
@@ -34,12 +34,30 @@ var ref = db.ref();
 // Attach an asynchronous callback to read the data at our posts reference
 ref.child('SearchQueue').on("child_added", function(snapshot) {
 	let searchItem = snapshot.val();
-	let stats;
-	scrape( searchItem.query ).then( function (stats) {
-		updateDb( searchItem.query, stats );
-		ref.child('SearchQueue').child(snapshot.key).remove();
+	let previousStats = null;
+	let previousElims = null;
+	ref.child('SearchQueue').child( snapshot.key ).remove();
+	ref.child('Players/' + searchItem.query ).once('value').then( ( snap) => {
+		if (snap.val() !== null ) {
+			previousStats = snap.val().currentStats;
+			ref.child('statSnapShots/' + previousStats + '/quickPlayStats/' + _ALL_HEROES_KEY_ + '/stats/Combat/Eliminations/value').once('value').then( (s) => {
+				previousElims = s.val();
+				scrape( searchItem.query ).then( function (stats) {
+					if (stats.quickPlayStats[_ALL_HEROES_KEY_].stats.Combat.Eliminations.value !== previousElims) {
+						updateDb( searchItem.query, stats );
+					}
+					return;
+				});
+			});
+		}
+		else {
+			scrape( searchItem.query ).then( function (stats) {
+				updateDb( searchItem.query, stats );
+				return;
+			});
+		}
 	});
-	
+
 }, function (errorObject) {
   console.log("The read failed: " + errorObject.code);
 });
@@ -53,6 +71,9 @@ function updateDb( name, data ) {
 	let snapshotKey = newSnapshotRef.key;
 	let plrupdate = {};
 
+	data.timeStamp = timeStamp;
+
+
 	newSnapshotRef.set( data );
 
 	playerRef.child( name ).update({
@@ -60,19 +81,14 @@ function updateDb( name, data ) {
 	});
 
 	playerRef.child( name ).child( 'previous').update({
-		[snapshotKey] : true
+		[snapshotKey] : true,
+		timeStamp: timeStamp
 	})
 }
 
-
-
-
-
-
-
 function scrape ( username ) {
 	var options = {
-		url: 'https://playoverwatch.com/en-us/career/xbl/' + username
+		url: 'https://playoverwatch.com/en-us/career/xbl/' + encodeURIComponent( username )
 	};
 
 	console.log( options.url );

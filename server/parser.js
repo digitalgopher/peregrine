@@ -37,9 +37,10 @@ class Parser {
 					let statName = this.$( innerStatNodes[statCount]).children().first().html().trim();
 					let statValue = this.$( innerStatNodes[statCount]).children().last().html();
 					let fixedStatName =  statName.replace(/-|\s/g, '');
+					statValue = statValue.replace(/,/g, ''); // remove commas
 					statCategory[ encodeURIComponent(fixedStatName) ] = {
 						name: statName,
-						value: parseInt( statValue )
+						value: parseFloat ( statValue )
 					}
 				}
 

@@ -1,5 +1,10 @@
 import React, { Component, PropTypes } from 'react';
 import StatCategory from './StatCategory';
+import { Heroes } from './../modules/heroes';
+import { boxShadow } from './../modules/style';
+
+import CharacterCard from './CharacterCard';
+import CharacterCardWithDetails from './CharacterCardWithDetails';
 
 require( './../../style/character.scss');
 
@@ -7,29 +12,29 @@ class Character extends Component {
 	
 	constructor ( props ) { 
 		super (props);
+		this.onCharacterCardSelect = this.onCharacterCardSelect.bind( this );
 	}
 
+	onCharacterCardSelect (key) {
+		this.props.onSelect( key, this.refNode );
+	}
 
 	render () {
+		let view = null;
+		if (this.props.isSelected) {
+			view = <CharacterCardWithDetails onSelect={this.onCharacterCardSelect} character={ this.props.character }></CharacterCardWithDetails>
+		}
+		else {
+			view = <CharacterCard character={ this.props.character }
+								onSelect={this.onCharacterCardSelect}></CharacterCard> 
+		}
 
-		var categories = Object.keys( this.props.character.stats );
-
-		let statCategories = categories.map( c => {
-			return <StatCategory name={ c }
-								key={ this.props.character.value + "-stats-" + c }
-								stats={ this.props.character.stats[ c ]}></StatCategory>
-		});
-
-
-		return ( 
-			<div className="character">
-				<div className="character-name">{ this.props.character.name }</div>
-				<span> { 'Character Val: ' + this.props.character.value } </span>
-				<div className="character-stats-container">
-					{statCategories}
-				</div>
+		return (
+			<div ref={ node => this.refNode = node }>
+				{ view }
 			</div>
 		)
+
 	}
 }
 

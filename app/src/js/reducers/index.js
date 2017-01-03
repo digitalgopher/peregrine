@@ -4,9 +4,11 @@ import {
 	GET_PLAYER,
 	GET_PLAYER_SUCCESS,
 	GETTING_PLAYER,
+	CLEAR_PLAYER,
 	SEARCH_PLAYER,
 	PLAYER_SEARCH_SUCCESS,
-	PLAYER_SEARCH_ADDED_TO_QUEUE
+	PLAYER_SEARCH_ADDED_TO_QUEUE,
+	SELECT_CHARACTER
 	 } from './../actions';
 
 
@@ -18,7 +20,49 @@ const initialState = {
 	},
 	ui: {
 		title: 'GopherWatch',
-		player: null
+		player: null,
+		selectedCharacter: null
+	},
+	player: {
+		name: null,
+		info: null
+	},
+	characters: {
+		keys: null,
+		byKey: null,
+		selected: null
+	}
+}
+
+function player ( state = initialState.player, action ) {
+	switch (action.type ) {
+		case CLEAR_PLAYER: 
+			return Object.assign({}, initialState.player );
+		case PLAYER_SEARCH_SUCCESS:
+			return Object.assign( {}, state, {
+				name: action.name,
+				info: action.player.playerInfo
+			});
+		default:
+			return state;
+	}
+}
+
+function characters ( state = initialState.characters, action ) {
+	switch ( action.type ) {
+		case CLEAR_PLAYER:
+			return Object.assign({}, initialState.characters );
+		case SELECT_CHARACTER:
+			return Object.assign({}, state, {
+				selected: action.key === state.selected ? null : action.key
+			});
+		case PLAYER_SEARCH_SUCCESS:
+			return Object.assign( {}, state, {
+				keys: Object.keys( action.player.compStats ),
+				byKey: action.player.compStats
+			});
+		default:
+			return state;
 	}
 }
 
@@ -39,12 +83,18 @@ function app ( state = initialState.app, action ) {
 
 function ui (state = initialState.ui, action ) {
 	switch( action.type ) {
+		case CLEAR_PLAYER: 
+			return Object.assign({}, initialState.ui );
 		case GET_PLAYER_SUCCESS: 
 			return Object.assign( {}, state, {
 				player: action.player
 			});
 		case GET_PLAYER:
 			return state;
+		case SELECT_CHARACTER:
+			return Object.assign({}, state, {
+				selectedCharacter: action.key === state.selectedCharacter ? null : action.key
+			})
 		case PLAYER_SEARCH_ADDED_TO_QUEUE:
 		case GETTING_PLAYER:
 			return {
@@ -66,7 +116,7 @@ function ui (state = initialState.ui, action ) {
 
 
 const GopherWatch = combineReducers({
-	ui, app
+	ui, app, characters, player
 })
 
 export default GopherWatch;

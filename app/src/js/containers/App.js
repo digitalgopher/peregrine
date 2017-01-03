@@ -3,7 +3,17 @@ import { connect } from 'react-redux';
 import { getPlayer, initApp } from './../actions';
 
 import SearchBox from './SearchBox';
-import Player from './../components/Player';
+import Header from './../components/Header';
+import Scrim from './../components/Scrim';
+import CharacterOverview from './CharacterOverview';
+
+//TODO: move this somewhere else... 
+import TransitionGroup from 'react-addons-transition-group';
+
+
+import Player from './Player';
+import PlayerAsCharacter from './PlayerAsCharacter';
+import Characters from './Characters';
 
 
 require('./../../style/app.scss');
@@ -23,19 +33,45 @@ class App extends Component {
 		this.props.getPlayer('gopher');
 	}
 
+	//TODO remove this too. it's just for the animation.
+	firstChild ( props ) {
+		const childrenArray = React.Children.toArray(props.children);
+		return childrenArray[0] || null;
+	}
+
 	render () {
+		let player = null;
+		let characters = null;
+		let characterview = null; 
 
-		let plr = null;
+		if ( this.props.player.name !== null ) {
+			if ( this.props.characterSelected ) {
+				player = <PlayerAsCharacter />
+			}
+			else {
+				player = <Player />;
+			}
+			
+			characters = <Characters />;
+		}
 
-		if ( this.props.player !== null ) {
-			plr = <Player value={ this.props.player}> </Player>;
+		if (this.props.characterSelected !== null ) {
+			characterview = ( 
+				<TransitionGroup component={this.firstChild}>
+					<CharacterOverview />
+				</TransitionGroup> 
+			)
 		}
 
 		return (
-			<div>
-				<h1> {this.props.title} </h1>
-				<SearchBox></SearchBox>
-				{ plr }
+			<div className="app">
+				<Header title={this.props.title}>
+					<SearchBox></SearchBox>
+				</Header>
+				<div className="content">
+					{ player }
+					{ characters }
+				</div>
 			</div>
 		)
 	}
@@ -44,7 +80,9 @@ class App extends Component {
 
 const mapStateToProps = (state, ownProps) => ({
 	title: state.ui.title,
-	player: state.ui.player
+	player: state.player,
+	characterSelected: state.characters.selected,
+	allChars: state.characters.byKey
 });
 
 

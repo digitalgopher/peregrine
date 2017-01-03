@@ -2,6 +2,14 @@ import axios from 'axios';
 
 import {firebaseModule} from './../modules/firebase';
 
+export const CLEAR_PLAYER = 'CLEAR_PLAYER';
+export function clearPlayer () {
+	return {
+		type: CLEAR_PLAYER
+	}
+}
+
+
 export const INIT_APP = 'INIT_APP';
 export function initApp () {
 	return function (dispatch) {
@@ -14,10 +22,6 @@ export function initApp () {
 
 export const GETTING_PLAYER = 'GETTING_PLAYER';
 export function gettingPlayer (name) {
-	return function (dispatch) {
-		dispatch( initFirebase() );
-	
-	}
 	return {
 		type: GETTING_PLAYER,
 		name: name
@@ -52,13 +56,10 @@ export function getPlayer ( name ) {
 
 export const SEARCH_PLAYER = 'SEARCH_PLAYER';
 export function searchPlayer (name) {
-	return function (dispatch) {
-		return firebaseModule.searchPlayer( name ).then( function (data) {
-			dispatch( playerSearchAddedToQueue ( name ) );
-			firebaseModule.watchPlayer( name, function ( player ) {
-				dispatch( playerSearchSuccess(player, name ) );
-				firebaseModule.unwatchPlayer( name );
-			});
+	return dispatch => {
+		dispatch( gettingPlayer( name ));
+		return firebaseModule.getPlayer( name ).then( data => {
+			dispatch( playerSearchSuccess( data, name ));
 		});
 	}
 }
@@ -77,5 +78,13 @@ export function playerSearchAddedToQueue (data) {
 	return {
 		type: PLAYER_SEARCH_ADDED_TO_QUEUE,
 		name: data
+	}
+}
+
+export const SELECT_CHARACTER = 'SELECT_CHARACTER';
+export function selectCharacter (characterValue) {
+	return {
+		type: SELECT_CHARACTER,
+		key: characterValue
 	}
 }

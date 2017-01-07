@@ -9,8 +9,8 @@ import CharacterCardWithDetails from './CharacterCardWithDetails';
 require( './../../style/character.scss');
 
 class Character extends Component {
-	
-	constructor ( props ) { 
+
+	constructor ( props ) {
 		super (props);
 		this.onCharacterCardSelect = this.onCharacterCardSelect.bind( this );
 	}
@@ -21,13 +21,13 @@ class Character extends Component {
 
 	render () {
 		let view = null;
-		if (this.props.isSelected) {
-			view = <CharacterCardWithDetails onSelect={this.onCharacterCardSelect} character={ this.props.character }></CharacterCardWithDetails>
-		}
-		else {
+		// if (this.props.isSelected) {
+		// 	view = <CharacterCardWithDetails onSelect={this.onCharacterCardSelect} character={ this.props.character }></CharacterCardWithDetails>
+		// }
+		// else {
 			view = <CharacterCard character={ this.props.character }
-								onSelect={this.onCharacterCardSelect}></CharacterCard> 
-		}
+								onSelect={this.onCharacterCardSelect}></CharacterCard>
+		// }
 
 		return (
 			<div ref={ node => this.refNode = node }>

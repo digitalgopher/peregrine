@@ -7,13 +7,18 @@ import Header from './../components/Header';
 import Scrim from './../components/Scrim';
 import CharacterOverview from './CharacterOverview';
 
-//TODO: move this somewhere else... 
+//TODO: move this somewhere else...
 import TransitionGroup from 'react-addons-transition-group';
 
 
 import Player from './Player';
 import PlayerAsCharacter from './PlayerAsCharacter';
 import Characters from './Characters';
+import CharacterSection from './CharacterSection';
+import Animation from './../animation-components/Animation';
+
+import { ScaleUpAnimation } from './../animations/scaleUp';
+
 
 
 require('./../../style/app.scss');
@@ -42,7 +47,7 @@ class App extends Component {
 	render () {
 		let player = null;
 		let characters = null;
-		let characterview = null; 
+		let characterview = null;
 
 		if ( this.props.player.name !== null ) {
 			if ( this.props.characterSelected ) {
@@ -51,16 +56,12 @@ class App extends Component {
 			else {
 				player = <Player />;
 			}
-			
-			characters = <Characters />;
+
+			characters = <CharacterSection />;
 		}
 
 		if (this.props.characterSelected !== null ) {
-			characterview = ( 
-				<TransitionGroup component={this.firstChild}>
-					<CharacterOverview />
-				</TransitionGroup> 
-			)
+			characterview = <CharacterOverview />;
 		}
 
 		return (
@@ -70,7 +71,7 @@ class App extends Component {
 				</Header>
 				<div className="content">
 					{ player }
-					{ characters }
+						{ characters }
 				</div>
 			</div>
 		)

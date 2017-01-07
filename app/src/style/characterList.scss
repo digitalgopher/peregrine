@@ -7,16 +7,6 @@
 	flex-flow: wrap;
 }
 
-.characterList > .characterList-animation .character {
-	margin: 0 15px;
-	height: 200px;
-	overflow: hidden;
+.characterList > .characterList-animation > * {
+	margin: 10px;
 }
-
-// .characterList > *:first-child {
-// 	margin: 0 15px 0 0;
-// }
-
-// .characterList > *::last-child {
-// 	margin: 0 0 0 15px;
-// }

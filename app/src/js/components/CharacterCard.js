@@ -6,8 +6,8 @@ import { boxShadow } from './../modules/style';
 require( './../../style/character.scss');
 
 class CharacterCard extends Component {
-	
-	constructor ( props ) { 
+
+	constructor ( props ) {
 		super (props);
 		this.click = this.click.bind( this );
 	}
@@ -20,7 +20,7 @@ class CharacterCard extends Component {
 		let hero = Heroes[ this.props.character.value ];
 		let style = Object.assign({}, this.props.style  );
 		let characterNameStyle = {
-			background: hero.color
+			// color: hero.color
 		}
 
 		if (this.props.isSelected) {
@@ -30,15 +30,12 @@ class CharacterCard extends Component {
 		}
 
 		return (
-				<div  className="character" 
+				<div  className="character"
 						onClick={ this.click }
 						ref={ node => this.refNode = node }
 						style={style}>
-					<div className="character-name" 
+					<div className="character-name"
 							style={characterNameStyle} >{ this.props.character.name }</div>
-					<div className="character-icon">				
-						<img src={ hero.ultIcon } />
-					</div>
 				</div>
 		)
 	}

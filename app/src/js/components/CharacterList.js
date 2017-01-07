@@ -28,14 +28,14 @@ class CharacterList extends Component {
 		let isSelected = this.props.selected === key;
 		let animationContainerStyle = {
 			zIndex: isSelected ? 99 : 1,
-			
+
 		}
 		let style = {
 			opacity: !isSelected && this.props.selected !== null ? 0.5 : 1
 		}
 
 		return <Animation enter={ ScaleUpAnimation } delay={ idx } key={key + idx } >
-			<Character 
+			<Character
 				style={ style }
 				isSelected={ this.props.selected === key }
 				onSelect={this.onSelectCharacter}
@@ -43,7 +43,7 @@ class CharacterList extends Component {
 			</Animation>
 
 		// return <FadeIn style={ animationContainerStyle } delay={ idx } key={key + idx } >
-		// 	<Character 
+		// 	<Character
 		// 		style={ style }
 		// 		isSelected={ this.props.selected === key }
 		// 		onSelect={this.onSelectCharacter}
@@ -52,30 +52,30 @@ class CharacterList extends Component {
 	}
 
 	onSelectCharacter ( key, node ) {
-		let prev = this.props.selected;
-		let player = this.animations[ key ];
+		// let prev = this.props.selected;
+		// let player = this.animations[ key ];
 
 		this.props.selectCharacter( key );
 
-		// we have no animation player yet... so let's animate it. 
-		if (!player) {
-			player = node.animate( SlideToCenterAnimation(node ), this.getAnimationDetails() );
-			// player = node.animate( SlideToCenterAnimation( node ), this.getAnimationDetails() );
-			this.animations[ key ] = player;
-		}
-		
-		if ( key === this.props.selected ) {
-			player.reverse();
-		}
-		else {
-			player.playbackRate = 1;
-			player.play();
-			if ( prev ) {
-				this.animations[ prev ].reverse();	
-			}
-		}
+		// // we have no animation player yet... so let's animate it.
+		// if (!player) {
+		// 	player = node.animate( SlideToCenterAnimation(node ), this.getAnimationDetails() );
+		// 	// player = node.animate( SlideToCenterAnimation( node ), this.getAnimationDetails() );
+		// 	this.animations[ key ] = player;
+		// }
+
+		// if ( key === this.props.selected ) {
+		// 	player.reverse();
+		// }
+		// else {
+		// 	player.playbackRate = 1;
+		// 	player.play();
+		// 	if ( prev ) {
+		// 		this.animations[ prev ].reverse();
+		// 	}
+		// }
 	}
-	
+
 	getAnimationDetails () {
 		return {
 			duration: 175, //milliseconds
@@ -90,7 +90,7 @@ class CharacterList extends Component {
 	render () {
 		return (
 			<div className="characterList">
-				<TransitionGroup component="div" className="characterList-animation">			
+				<TransitionGroup component="div" className="characterList-animation">
 					{ this.props.characterKeys.map( this.renderCharacter )}
 				</TransitionGroup>
 			</div>

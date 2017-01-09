@@ -10,6 +10,9 @@ import { SlideDownAnimation } from './../animations/slideDown';
 import FadeIn from './../animation-components/fadeIn';
 import FadeOut from './../animation-components/fadeOut';
 import Animation from './../animation-components/Animation';
+
+import { DecelerationCurve } from './../animations'
+
 require( './../../style/characterList.scss');
 
 class CharacterList extends Component {
@@ -34,7 +37,9 @@ class CharacterList extends Component {
 			opacity: !isSelected && this.props.selected !== null ? 0.5 : 1
 		}
 
-		return <Animation enter={ ScaleUpAnimation } delay={ idx } key={key + idx } >
+		return <Animation appear={ ScaleUpAnimation }
+							easing={ DecelerationCurve }
+							delay={ idx } key={key + idx } >
 			<Character
 				style={ style }
 				isSelected={ this.props.selected === key }

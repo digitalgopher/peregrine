@@ -7,7 +7,6 @@ export const SlideDownAnimation = {
 	},
 
 	initialStyles: {
-		// transform: 'scale(0, 0)',
 		transformOrigin: '50%'
 	}
 };

@@ -14,14 +14,10 @@ class PlayerAs extends Component {
 		return (
 			<div className="playerAs">
 				<Player />
-				<span> AS </span>
 				<div id="mysupercooldiv"> </div>
 			</div>
 		)
-
 	}
-
-
 }
 
 export default PlayerAs

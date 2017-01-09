@@ -5,10 +5,24 @@ import { selectCharacter } from './../actions';
 import CharacterFullView from './../components/CharacterFullView';
 
 import TransitionGroup from 'react-addons-transition-group';
-import { ScaleUpAnimation } from './../animations/scaleUp';
-import { ScaleDownAnimation } from './../animations/ScaleDown';
-import { FadeInAnimation } from './../animations/FadeIn';
 import Animation from './../animation-components/Animation';
+
+
+import {
+	FadeInAnimation,
+	ScaleDownAnimation,
+	ScaleUpAnimation,
+	SlideFromRightAnimation,
+	SlideRightAnimation,
+	SlideLeftAnimation,
+	SlideFromLeftAnimation,
+
+	SlideFromRightAndFadeInAnimation,
+	SlideRightAndFadeOutAnimation,
+
+	SlideFromLeftAndFadeInAnimation,
+	SlideLeftAndFadeOutAnimation
+ } from './../animations';
 
 
 class CharacterSection extends Component {
@@ -19,27 +33,37 @@ class CharacterSection extends Component {
 	render () {
 		const { isSelected, characters, playerIsSelected, characterKeys, selected, selectCharacter } = this.props;
 		let view = null;
+		let selectedView = null;
+
 		if ( !playerIsSelected ) {
 			return null;
 		}
 
 		if ( isSelected ) {
-			view = <Animation enter={ ScaleUpAnimation } exit={ ScaleDownAnimation }>
-				<button onClick={ () => { selectCharacter( null )} } >Back</button>
-				<CharacterFullView character={ characters[ isSelected ]}></CharacterFullView>
-			</Animation>
-
+			selectedView = (
+				<Animation enter={ SlideFromRightAndFadeInAnimation } exit={ SlideRightAndFadeOutAnimation }>
+					<div>
+						<button onClick={ () => { selectCharacter( null )} } >Back</button>
+						<CharacterFullView character={ characters[ isSelected ]}></CharacterFullView>
+					</div>
+				</Animation>
+			)
 		}
 		else {
-			view = <Animation enter={ FadeInAnimation } exit={ ScaleDownAnimation }>
-			<CharacterList characterKeys={ characterKeys }
+			view = (
+				<Animation appear={ FadeInAnimation }
+							enter={ SlideFromLeftAndFadeInAnimation }
+							exit={ SlideLeftAndFadeOutAnimation }>
+					<CharacterList characterKeys={ characterKeys }
 								characters={ characters }
 								selectCharacter={ selectCharacter }></CharacterList>
-								</Animation>
+				</Animation>
+			)
 		}
 
-		return <TransitionGroup component="div">
-			{view }
+		return <TransitionGroup component="div" className="characterSection-animation">
+			{ view }
+			{ selectedView }
 		</TransitionGroup>
 
 

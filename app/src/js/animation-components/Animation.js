@@ -4,9 +4,22 @@ class Animation extends Component {
 
 	constructor (props) {
 		super( props );
-
 		this._animate = this._animate.bind( this );
+		this._clearStyles = this._clearStyles.bind( this );
+
+		this.defaultEffectTiming = {
+			delay: 0,
+			duration: 300,
+			easing: 'ease-in-out'
+		}
 	}
+
+	_clearStyles ( animation ) {
+		Object.keys( animation.initialStyles ).forEach( name => {
+			this.refNode.style[ name ] = animation.initialStyles[ name ];
+		});
+	}
+
 	_animate ( animation ) {
 
 		if( this.refNode.getAnimations()[0]) {
@@ -17,13 +30,18 @@ class Animation extends Component {
 			this.refNode.style[ name ] = animation.initialStyles[ name ];
 		});
 
-		let delayStart = this.props.delay || 0;
-		this.refNode.animate(
-			this.props.enter.keyframes(),
+		let timing = Object.assign( {}, {
+			delay: this.props.delay ||  this.defaultEffectTiming.delay,
+			duration: this.props.duration ||  this.defaultEffectTiming.duration,
+			easing: this.props.easing ||  this.defaultEffectTiming.easing
+		});
+
+		return this.refNode.animate(
+			animation.keyframes(),
 			{
-				duration: 500, //milliseconds
-				easing: 'ease-in-out', //'linear', a bezier curve, etc.
-				delay: delayStart * 50, //milliseconds
+				duration: timing.duration, //milliseconds
+				easing: timing.easing, //'linear', a bezier curve, etc.
+				delay: timing.delay * 50, //milliseconds
 				iterations: 1, //or a number
 				direction: 'normal', //'normal', 'reverse', etc.
 				fill: 'forwards' //'backwards', 'both', 'none', 'auto'
@@ -38,15 +56,38 @@ class Animation extends Component {
 			return;
 		}
 
-		this._animate( this.props.exit );
-		callback();
+		let animation = this._animate( this.props.exit );
+		animation.onfinish = () => {
+			this._clearStyles( this.props.exit );
+			callback()
+		};
+	}
 
+	componentWillEnter (callback) {
+		if ( !this.props.enter ) {
+			callback();
+			return;
+		}
+		let animation = this._animate( this.props.enter );
+		animation.onfinish = () => {
+			this._clearStyles( this.props.enter );
+			callback()
+		};
 	}
 
 	componentWillAppear (callback) {
-		this._animate( this.props.enter );
-		callback();
+		if ( !this.props.appear ) {
+			callback();
+			return;
+		}
+		let animation = this._animate( this.props.appear );
+		animation.onfinish = () => {
+			this._clearStyles( this.props.appear );
+			callback()
+		};
 	}
+
+
 
 	render () {
 		return (
@@ -57,5 +98,27 @@ class Animation extends Component {
 	}
 }
 
+Animation.propTypes = {
+
+	duraction: PropTypes.number,
+	easing: PropTypes.string,
+
+	appear: PropTypes.shape({
+		initialStyles: PropTypes.object.isRequired,
+		keyframes: PropTypes.func.isRequired
+	}),
+
+	enter: PropTypes.shape({
+		initialStyles: PropTypes.object.isRequired,
+		keyframes: PropTypes.func.isRequired
+	}),
+
+	exit: PropTypes.shape({
+		initialStyles: PropTypes.object.isRequired,
+		keyframes: PropTypes.func.isRequired
+	}),
+
+
+}
 
 export default Animation

@@ -45,9 +45,7 @@
 
 
 .characterFullView {
-	position: absolute;
-	width: 100%;
-	height: 100%;
+
 
 
 	// box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14),
@@ -57,4 +55,12 @@
 
 .characterFullView > .scrollable {
 	overflow-y: scroll;
+}
+
+.characterSection {
+	position: relative;
+}
+
+.characterSection-animation > * {
+	position: absolute;
 }

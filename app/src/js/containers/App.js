@@ -71,7 +71,7 @@ class App extends Component {
 				</Header>
 				<div className="content">
 					{ player }
-						{ characters }
+					{ characters }
 				</div>
 			</div>
 		)

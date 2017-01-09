@@ -20,9 +20,7 @@ class CharacterFullView extends Component {
 
 		return (
 				<div className="characterFullView">
-				<div className="characterFullView-scrollable">
 					{ categories }
-				</div>
 			</div>
 		)
 	}

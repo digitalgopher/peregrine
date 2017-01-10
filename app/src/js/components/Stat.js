@@ -10,8 +10,8 @@ class Stat extends Component {
 	render () {
 		return (
 			<div className="stat">
-				<div className="stat-name"> { this.props.name }</div>
 				<div className="stat-value"> {this.props.value} </div>
+				<div className="stat-name"> { this.props.name }</div>
 			</div>
 		)
 	}

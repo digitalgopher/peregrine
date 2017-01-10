@@ -9,7 +9,7 @@ class Animation extends Component {
 
 		this.defaultEffectTiming = {
 			delay: 0,
-			duration: 300,
+			duration: 400,
 			easing: 'ease-in-out'
 		}
 	}

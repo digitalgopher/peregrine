@@ -2,17 +2,12 @@
 
 }
 
-.stat > * {
-	text-align: left;
-
-}
-
-.stat > .stat-name {
+.stat-name {
 	background: white;
 	padding: 0 8px 0 0;
 }
 
-.stat > .stat-value {
+.stat-value {
 	font-family: 'Roboto', sans-serif;
 	font-weight: 100;
 	font-size: 24px;
@@ -24,4 +19,16 @@
 	display: flex;
 	flex-flow: wrap;
 	background: #1C1C1D;
+}
+
+
+.stat-small-value {
+	font-weight: 100;
+	font-size: 24px;
+	display: block;
+}
+
+.stat-small-name {
+	font-size: 18px;
+	display: block;
 }

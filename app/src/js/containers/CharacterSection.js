@@ -79,8 +79,6 @@ CharacterSection.propTypes = {
 	selectCharacter: PropTypes.func.isRequired
 }
 
-
-
 const mapStateToProps = ( state, ownProps ) => ({
 	characterKeys: state.characters.keys,
 	characters: state.characters.byKey,

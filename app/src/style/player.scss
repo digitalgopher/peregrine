@@ -1,12 +1,14 @@
 
 .playerSection {
 	position: relative;
+	overflow: auto;
 }
 
 
 
 .player {
 	display: block;
+	margin-top: 50px;
 }
 
 .player-name {

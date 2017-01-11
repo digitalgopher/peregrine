@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getPlayer, searchPlayer, clearPlayer } from './../actions';
+import { getPlayer, searchPlayer, clearPlayer, updatePlayer } from './../actions';
 
 
 class SearchBox extends Component {
@@ -9,6 +9,7 @@ class SearchBox extends Component {
 		super( props );
 		this.handleChange = this.handleChange.bind( this );
 		this.search = this.search.bind( this );
+		this.update = this.update.bind( this );
 		this.state = {
 			value: 'Gopher'
 		}
@@ -25,14 +26,19 @@ class SearchBox extends Component {
 		this.props.searchPlayer( this.state.value );
 	}
 
+	update () {
+		this.props.updatePlayer( this.state.value );
+	}
+
 	render () {
 		return (
 			<div>
-				<input type="text" 
-					onChange={this.handleChange} 
+				<input type="text"
+					onChange={this.handleChange}
 					value={this.state.value}
 					placeholder="search for a player" />
 				<button onClick={ this.search }>Search</button>
+				<button onClick={ this.update }> Update Player </button>
 				<button onClick={ this.props.clearPlayer }>Clear</button>
 			</div>
 		)
@@ -43,4 +49,4 @@ const mapStateToProps = (state, ownProps) => ({
 
 });
 
-export default connect( mapStateToProps, { getPlayer, searchPlayer, clearPlayer } )( SearchBox );
+export default connect( mapStateToProps, { getPlayer, searchPlayer, clearPlayer, updatePlayer } )( SearchBox );

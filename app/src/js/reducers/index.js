@@ -29,8 +29,8 @@ const initialState = {
 		generalStats: null
 	},
 	characters: {
-		keys: null,
-		byKey: null,
+		keys: [],
+		byKey: {},
 		selected: null
 	}
 }

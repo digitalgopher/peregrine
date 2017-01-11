@@ -15,9 +15,6 @@ export function initApp () {
 	return function (dispatch) {
 		firebaseModule.init();
 	}
-	return {
-		type: INIT_APP
-	}
 }
 
 export const GETTING_PLAYER = 'GETTING_PLAYER';
@@ -50,6 +47,23 @@ export function getPlayer ( name ) {
 
 		return axios.get('/api/v1/gopher', data).then( function (response) {
 			dispatch( getPlayerSuccess( response.data, name ));
+		});
+	}
+}
+
+export const UPDATE_PLAYER_SUCCESS = 'UPDATE_PLAYER_SUCCESS';
+export function updatePlayerSuccess( data ) {
+	return {
+		type: UPDATE_PLAYER_SUCCESS,
+		data: data
+	}
+}
+
+export const UPDATE_PLAYER = 'UPDATE_PLAYER';
+export function updatePlayer (name) {
+	return dispatch => {
+		return firebaseModule.searchPlayer( name ).then( data => {
+			dispatch(updatePlayerSuccess( data ));
 		});
 	}
 }

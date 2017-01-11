@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import StatCategory from './StatCategory';
-import { Heroes } from './../modules/heroes';
 import { boxShadow } from './../modules/style';
+import StatSmall from './StatSmall';
 
 require( './../../style/character.scss');
 
@@ -13,15 +13,13 @@ class CharacterCard extends Component {
 	}
 
 	click () {
-		this.props.onSelect( this.props.character.value, this.refNode);
+		this.props.onSelect( this.props.character.value );
 	}
 
 	render () {
-		let hero = Heroes[ this.props.character.value ];
+		const { hero, character } = this.props;
+
 		let style = Object.assign({}, this.props.style  );
-		let characterNameStyle = {
-			// color: hero.color
-		}
 
 		if (this.props.isSelected) {
 			style = Object.assign( {}, style, {
@@ -29,14 +27,20 @@ class CharacterCard extends Component {
 			})
 		}
 
+		if ( hero.abilities ) {
+
+		}
+
 		return (
-				<div  className="character"
-						onClick={ this.click }
-						ref={ node => this.refNode = node }
-						style={style}>
-					<div className="character-name"
-							style={characterNameStyle} >{ this.props.character.name }</div>
+			<div  className="character-card" onClick={ this.click } style={style}>
+				<div className="character-card-name">{ character.name }</div>
+				<div className="character-card-icon">
+
 				</div>
+				<div className="character-card-stats">
+					<StatSmall name={ character.stats.Combat.Eliminations.name } value={ character.stats.Combat.Eliminations.value }/>
+				</div>
+			</div>
 		)
 	}
 }
@@ -44,7 +48,8 @@ class CharacterCard extends Component {
 CharacterCard.propTypes = {
 	character: PropTypes.shape({
 		stats: PropTypes.object.isRequired
-	}).isRequired
+	}).isRequired,
+	hero: PropTypes.object.isRequired
 }
 
 export default CharacterCard

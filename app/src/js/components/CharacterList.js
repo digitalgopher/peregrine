@@ -1,9 +1,9 @@
-//react
 import React, { PropTypes, Component } from 'react';
 import TransitionGroup from 'react-addons-transition-group';
-//components
+
 import Character from './Character';
-//animation
+import { Heroes } from './../modules/heroes';
+
 import Animation from './../animation-components/Animation';
 import {
 	ScaleUpAnimation,
@@ -35,6 +35,7 @@ class CharacterList extends Component {
 				style={ style }
 				isSelected={ this.props.selected === key }
 				onSelect={this.onSelectCharacter}
+				hero={ Heroes[key] }
 				character={ this.props.characters[ key ]}></Character>
 			</Animation>
 	}

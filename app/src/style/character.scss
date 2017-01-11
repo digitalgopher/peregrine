@@ -1,25 +1,26 @@
-.character {
-	display: block;
+.character-card {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
 	min-width: 250px;
 	width: 250px;
 	height: 300px;
 	background: white;
-		box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14),
+	box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14),
 				0 1px 10px 0 rgba(0, 0, 0, 0.12),
 				0 2px 4px -1px rgba(0, 0, 0, 0.4);
 }
 
-.character > * {
-	transition: box-shadow ease-in-out 150sms;
+.character-card-stats {
+
 }
 
-.character .character-name {
+
+
+.character-card-name {
 	font-family: 'Roboto Condensed', sans-serif;
 	font-weight: 700;
 	font-style: italic;
-	/*color: rgba( 255, 255, 255, .8);
-	*/
-	/*color: rgba( 0, 0, 0, .8);*/
 	font-size: 30px;
 	text-align: left;
 	margin-bottom: 7px;
@@ -27,40 +28,8 @@
 	overflow: hidden;
 }
 
-.character .character-icon {
-	overflow: hidden;
-}
-
-.character .character-stats-container {
-	display: flex;
-	flex-direction: row;
-	flex-flow: wrap;
-}
-
-.character > .character-stats-container > * {
-	min-width: 20%;
-}
-
-
-
-
-.characterFullView {
-
-
-
-	// box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14),
-    //               0 1px 10px 0 rgba(0, 0, 0, 0.12),
-    //               0 2px 4px -1px rgba(0, 0, 0, 0.4);
-}
-
-.characterFullView > .scrollable {
-	overflow-y: scroll;
-}
 
 .characterSection {
 	position: relative;
 }
 
-.characterSection-animation > * {
-	position: absolute;
-}

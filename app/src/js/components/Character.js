@@ -19,17 +19,10 @@ class Character extends Component {
 	}
 
 	render () {
-		let view = null;
-
-		view = <CharacterCard character={ this.props.character }
-							onSelect={this.onCharacterCardSelect}></CharacterCard>
-
-		return (
-			<div ref={ node => this.refNode = node }>
-				{ view }
-			</div>
-		)
-
+		return <CharacterCard
+					character={ this.props.character }
+					hero={ this.props.hero }
+					onSelect={this.onCharacterCardSelect}></CharacterCard>
 	}
 }
 

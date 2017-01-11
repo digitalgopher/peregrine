@@ -7,8 +7,27 @@ export const Heroes = {
 	"0x02E0000000000003": {
 		name: 'Tracer',
 		color: 'rgb(248, 145, 27)',
-		ultIcon: 'https://firebasestorage.googleapis.com/v0/b/gopherwatch-664c5.appspot.com/o/0x0E6000000000016C.png?alt=media&token=4892da37-0f91-49bd-b356-021e0afe2282'
-	},
+		abilities: {
+			primary: {
+				name: "Pulse Pistols",
+				type: 'primary',
+				icon: 'https://firebasestorage.googleapis.com/v0/b/gopherwatch-664c5.appspot.com/o/tracer-primary.png?alt=media&token=e80540ef-2704-4145-84be-262b4650f140',
+			},
+			ultimate:
+				{
+					name: "Pulse Bomb",
+					type: "ultimate",
+					icon: 'https://firebasestorage.googleapis.com/v0/b/gopherwatch-664c5.appspot.com/o/tracer-ult.png?alt=media&token=9864416e-dc2d-43a2-959e-f5a7a88e0e88'
+				},
+			secondary: [
+				{
+					name: 'Rewind',
+					type: 'secondary',
+					icon: 'https://firebasestorage.googleapis.com/v0/b/gopherwatch-664c5.appspot.com/o/tracer-rewind.png?alt=media&token=29477663-c9e8-4482-9584-3b50c58c14fd'
+				}
+			],
+		}
+},
 	"0x02E0000000000004": {
 		name: 'Mercy',
 		color: 'rgb(255, 225, 108)',
@@ -39,7 +58,11 @@ export const Heroes = {
 		color: 'rgb(139, 236, 34)',
 		ultIcon: 'https://firebasestorage.googleapis.com/v0/b/gopherwatch-664c5.appspot.com/o/0x0E60000000000185.png?alt=media&token=dec1c7a8-d318-4491-9001-e4abae41740b'
 	}
-	
-
-
 }
+
+
+// const abilities = {
+// 	pulsePistols:
+// 	rewind:
+// 	pulseBomb:
+// }

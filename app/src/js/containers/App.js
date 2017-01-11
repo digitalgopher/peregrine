@@ -31,9 +31,7 @@ class App extends Component {
 				</section>
 
 				<section id="character">
-					<div className="content">
-						<CharacterSection />
-					</div>
+					<CharacterSection />
 				</section>
 
 			</div>

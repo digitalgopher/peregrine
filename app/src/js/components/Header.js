@@ -3,16 +3,18 @@ import React, { Component, PropTypes } from 'react';
 require( './../../style/header.scss');
 
 class Header extends Component {
-	
-	constructor ( props ) { 
+
+	constructor ( props ) {
 		super (props);
 	}
 
 	render () {
-		return ( 
+		return (
 			<div className="header">
-				<div className="header-title">{ this.props.title }</div>
-				{ this.props.children }
+				<div className="background"></div>
+				<div className="intro">
+					<div className="header-title">{ this.props.title }</div>
+				</div>
 			</div>
 		)
 	}

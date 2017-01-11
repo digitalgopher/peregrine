@@ -25,7 +25,8 @@ const initialState = {
 	},
 	player: {
 		name: null,
-		info: null
+		info: null,
+		generalStats: null
 	},
 	characters: {
 		keys: null,
@@ -36,12 +37,13 @@ const initialState = {
 
 function player ( state = initialState.player, action ) {
 	switch (action.type ) {
-		case CLEAR_PLAYER: 
+		case CLEAR_PLAYER:
 			return Object.assign({}, initialState.player );
 		case PLAYER_SEARCH_SUCCESS:
 			return Object.assign( {}, state, {
 				name: action.name,
-				info: action.player.playerInfo
+				info: action.player.playerInfo,
+				generalStats: action.player.compStats['0x02E00000FFFFFFFF'].stats
 			});
 		default:
 			return state;
@@ -69,7 +71,7 @@ function characters ( state = initialState.characters, action ) {
 function app ( state = initialState.app, action ) {
 	switch (action.type) {
 		case SEARCH_PLAYER:
-			return Object.assign( {}, state, { 
+			return Object.assign( {}, state, {
 				searchedPlayer: action.name
 			});
 		case PLAYER_SEARCH_SUCCESS:
@@ -83,9 +85,9 @@ function app ( state = initialState.app, action ) {
 
 function ui (state = initialState.ui, action ) {
 	switch( action.type ) {
-		case CLEAR_PLAYER: 
+		case CLEAR_PLAYER:
 			return Object.assign({}, initialState.ui );
-		case GET_PLAYER_SUCCESS: 
+		case GET_PLAYER_SUCCESS:
 			return Object.assign( {}, state, {
 				player: action.player
 			});
@@ -104,7 +106,7 @@ function ui (state = initialState.ui, action ) {
 		case PLAYER_SEARCH_SUCCESS:
 		case GET_PLAYER_SUCCESS:
 			return {
-				title: 'Stats for ' + action.name,
+				title: 'test',
 				player: action.player
 			};
 		case INIT_APP:

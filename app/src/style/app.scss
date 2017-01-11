@@ -6,30 +6,16 @@ body {
 	background: #FCFCFC;
 }
 
+.content {
+	width: 1105px;
+	margin: 0 auto;
+	position: relative;
+}
+
 .app > .content {
 	margin: 0 auto;
 	max-width: 1105px;
 	position: relative;
 }
 
-.scrim {
-	z-index: -99;
-	user-select: none;
-	position: absolute;
-	top:0;
-	left:0;
-	right:0;
-	bottom: 0;
-	width: 100%;
-	height: 100%;
-	background: dodgerblue;
-	justify-content: center;
-	align-items: center;
-	display: flex;
-}
 
-.scrim > * {
-	display: block;
-	border-radius: 50%;
-	background: green;
-}

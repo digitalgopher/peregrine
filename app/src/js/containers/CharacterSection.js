@@ -61,12 +61,14 @@ class CharacterSection extends Component {
 			)
 		}
 
-		return <TransitionGroup component="div" className="characterSection-animation">
-			{ view }
-			{ selectedView }
-		</TransitionGroup>
-
-
+		return (
+			<div className="content">
+				<TransitionGroup component="div" className="characterSection-animation">
+					{ view }
+					{ selectedView }
+				</TransitionGroup>
+			</div>
+		)
 	}
 }
 
@@ -85,9 +87,5 @@ const mapStateToProps = ( state, ownProps ) => ({
 	playerIsSelected: state.player.name !== null,
 	isSelected: state.characters.selected || ''
 });
-
-
-
-
 
 export default connect( mapStateToProps, { selectCharacter } )( CharacterSection );

@@ -1,3 +1,10 @@
+
+.playerSection {
+	position: relative;
+}
+
+
+
 .player {
 	display: block;
 }
@@ -19,9 +26,7 @@
 	position: relative;
 }
 
-.player-sr {
 
-}
 
 .player-sr > span:first-of-type {
 	font-family: 'Roboto Condensed', sans-serif;
@@ -32,4 +37,11 @@
 
 .player-sr > span:nth-of-type(2) {
 	color: red;
+}
+
+.player-bg {
+	background: #232A2D;
+	position: absolute;
+	width: 100%;
+	height: 100%;
 }

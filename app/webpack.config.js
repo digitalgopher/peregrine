@@ -28,7 +28,7 @@ module.exports = {
             // {
             //     test: /\.html$/,
             //     loader: "file?name=[name].[ext]"
-            // },  
+            // },
             {
                 test: /\.js?$/,
                 exclude: /node_modules/,
@@ -50,14 +50,14 @@ module.exports = {
             { test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "file-loader" }
         ]
     },
-    
+
     devServer: {
         proxy: {
-        '/api': {
-            target: 'http://localhost:3000',
-            secure: false
-        }
+            '/api': {
+                target: 'http://localhost:3000',
+                secure: false
+            }
         }
     }
-    
+
 };

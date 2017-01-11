@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import StatCategory from './StatCategory';
+
 import { Heroes } from './../modules/heroes';
 import { boxShadow } from './../modules/style';
 

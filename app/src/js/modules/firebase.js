@@ -37,14 +37,6 @@ class FirebaseModule {
 					});
 				});
 			});
-
-		// this.playerRef.on('value', (snapshot) => {
-		// 	return this.database.ref('statSnapShots/' + snapshot.val() ).once('value').then( function (snap) {
-		// 		console.dir( snap.val() );
-		// 		callback( snap.val() );
-		// 	});
-			
-		// });
 	}
 
 	unwatchPlayer ( name ) {

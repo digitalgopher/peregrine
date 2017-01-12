@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import Character from './Character';
+
+import PlayerDescription from './PlayerDescription';
 
 require( './../../style/player.scss');
 
@@ -10,28 +11,22 @@ class Player extends Component {
 	}
 
 	render () {
-
+		const { heroMain } = this.props;
+		const { GamesPlayed, GamesWon } = this.props.stats.Game;
+		let winLossRecord = `${GamesWon.value} - ${GamesPlayed.value-GamesWon.value} - 0 / ${GamesPlayed.value}`;
 		return (
 			<div className="player">
 				<div className="player-info">
 					<div className="player-avatar">
 						<img src={ this.props.player.info.avatarUrl } />
 					</div>
-					<div className="player-name"> {this.props.player.name} </div>
-					<div className="">
-						<span> Games Played </span>
-						<span> { this.props.stats.Game.GamesPlayed.value } </span>
-					</div>
-					<div className="player-sr">
-						<span>SR</span>
-						<span> { this.props.player.info.SR }</span>
-					</div>
+				</div>
+				<div className="player-stats">
+					<PlayerDescription heroMain={heroMain} player={this.props.player} stats={ this.props.stats }/>
 				</div>
 			</div>
 		)
 	}
-
-
 }
 
 export default Player

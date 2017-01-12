@@ -4,12 +4,12 @@ import { connect } from 'react-redux';
 import Player from '../components/Player';
 import SearchBox from './../containers/SearchBox';
 
-import { selectCharacter } from './../actions';
 import CharacterFullView from './../components/CharacterFullView';
 
 import TransitionGroup from 'react-addons-transition-group';
 import Animation from './../animation-components/Animation';
 
+import { mostPlayedCharacter } from './../reducers/characters';
 
 import {
 	FadeInAnimation,
@@ -34,7 +34,7 @@ class PlayerSection extends Component {
 	}
 
 	render () {
-		const { player, playerIsSelected, stats } = this.props;
+		const { player, playerIsSelected, stats, heroMain } = this.props;
 
 		let playerView = null;
 		let searchBoxView = null;
@@ -42,7 +42,7 @@ class PlayerSection extends Component {
 		if ( playerIsSelected ) {
 			playerView =  (
 				<Animation enter={ SlideFromLeftAndFadeInAnimation } exit={ SlideRightAndFadeOutAnimation }>
-					<Player player={ player } stats={ stats }/>
+					<Player player={ player } stats={ stats } heroMain={heroMain}/>
 				</Animation>
 			)
 		}
@@ -69,9 +69,11 @@ class PlayerSection extends Component {
 }
 
 PlayerSection.propTypes = {
-	player: PropTypes.object.isRequired,
 	playerIsSelected: PropTypes.bool.isRequired,
-	stats: PropTypes.object.isRequired
+
+	player: PropTypes.object,
+	stats: PropTypes.object,
+	heroMain: PropTypes.object
 }
 
 
@@ -79,11 +81,12 @@ PlayerSection.propTypes = {
 const mapStateToProps = ( state, ownProps ) => ({
 	player: state.player,
 	playerIsSelected: state.player.info !== null,
-	stats: state.player.generalStats || {}
+	stats: state.player.generalStats || {},
+	heroMain: state.characters.mostPlayed,
 });
 
 
 
 
 
-export default connect( mapStateToProps, { selectCharacter } )( PlayerSection );
+export default connect( mapStateToProps, { } )( PlayerSection );

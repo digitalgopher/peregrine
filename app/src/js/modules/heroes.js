@@ -4,6 +4,14 @@ export const Heroes = {
 		color: 'rgb(0, 0, 0)',
 		ultIcon: 'https://firebasestorage.googleapis.com/v0/b/gopherwatch-664c5.appspot.com/o/0x0E6000000000017B.png?alt=media&token=96a402e0-5de0-482d-8656-948610b59945'
 	},
+	"0x02E0000000000002": {
+		name: 'Reaper',
+		color: 'rgb(39, 39, 37)',
+	},
+	"0x02E0000000000005": {
+		name: "Hanzo",
+		color: '',
+	},
 	"0x02E0000000000003": {
 		name: 'Tracer',
 		color: 'rgb(248, 145, 27)',
@@ -13,12 +21,11 @@ export const Heroes = {
 				type: 'primary',
 				icon: 'https://firebasestorage.googleapis.com/v0/b/gopherwatch-664c5.appspot.com/o/tracer-primary.png?alt=media&token=e80540ef-2704-4145-84be-262b4650f140',
 			},
-			ultimate:
-				{
-					name: "Pulse Bomb",
-					type: "ultimate",
-					icon: 'https://firebasestorage.googleapis.com/v0/b/gopherwatch-664c5.appspot.com/o/tracer-ult.png?alt=media&token=9864416e-dc2d-43a2-959e-f5a7a88e0e88'
-				},
+			ultimate: {
+				name: "Pulse Bomb",
+				type: "ultimate",
+				icon: 'https://firebasestorage.googleapis.com/v0/b/gopherwatch-664c5.appspot.com/o/tracer-ult.png?alt=media&token=9864416e-dc2d-43a2-959e-f5a7a88e0e88'
+			},
 			secondary: [
 				{
 					name: 'Rewind',

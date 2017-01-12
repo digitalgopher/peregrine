@@ -30,6 +30,7 @@ class Parser {
 				let statHeader = this.$( statTables[statTableCount]).find('thead span').html();
 				let innerStatNodes = this.$( statTables[statTableCount]).find('tbody tr' );
 				let statCategory = {};
+				let isGameCategory = statHeader === 'Game';
 				statHeader = statHeader.replace(/-|\s/g, '');
 
 				//for each individual stat....
@@ -38,9 +39,35 @@ class Parser {
 					let statValue = this.$( innerStatNodes[statCount]).children().last().html();
 					let fixedStatName =  statName.replace(/-|\s/g, '');
 					statValue = statValue.replace(/,/g, ''); // remove commas
+
+					if ( isGameCategory ) {
+						switch( fixedStatName ) {
+							case 'TimePlayed':
+								if ( statValue.indexOf('hours') > -1) {
+									statValue = (parseFloat( statValue ) * 60);
+								}
+								else {
+									statValue = parseFloat( statValue );
+								}
+								break;
+							case 'ObjectiveTime':
+							case 'TimeSpentonFire':
+								//save it as a string for these ones..
+								break;
+							default:
+								statValue = parseFloat ( statValue );
+								break;
+						}
+					}
+					else {
+						statValue = parseFloat ( statValue );
+					}
+
+					console.log( `value: ${statValue}, name: ${statName}, character: ${characterName}`);
+
 					statCategory[ encodeURIComponent(fixedStatName) ] = {
 						name: statName,
-						value: parseFloat ( statValue )
+						value: statValue
 					}
 				}
 

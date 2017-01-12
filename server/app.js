@@ -43,9 +43,9 @@ ref.child('SearchQueue').on("child_added", function(snapshot) {
 			ref.child('statSnapShots/' + previousStats + '/quickPlayStats/' + _ALL_HEROES_KEY_ + '/stats/Combat/Eliminations/value').once('value').then( (s) => {
 				previousElims = s.val();
 				scrape( searchItem.query ).then( function (stats) {
-					if (stats.quickPlayStats[_ALL_HEROES_KEY_].stats.Combat.Eliminations.value !== previousElims) {
+					// if (stats.quickPlayStats[_ALL_HEROES_KEY_].stats.Combat.Eliminations.value !== previousElims) {
 						updateDb( searchItem.query, stats );
-					}
+					// }
 					return;
 				});
 			});

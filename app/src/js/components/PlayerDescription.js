@@ -25,9 +25,9 @@ class PlayerDescription extends Component {
 				<span>. They win </span>
 				<span style={highlightStyle} className="player-description-highlight">{ winPercent }%</span>
 				<span> of their games in Total, and </span>
-				<span style={highlightStyle} className="player-description-highlight">{ winPercentHero }%</span>
+				<span style={highlightStyle} className="">{ winPercentHero }%</span>
 				<span> when they play as </span>
-				<span style={highlightStyle} className="player-description-highlight">{ hero.name }</span>
+				<span style={highlightStyle} className="">{ hero.name }</span>
 			</p>
 		)
 	}

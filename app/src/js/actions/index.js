@@ -12,7 +12,7 @@ export function clearPlayer () {
 export const RESIZE_SCREEN = 'RESIZE_SCREEN';
 export function resizeScreen ( data ) {
 	return {
-		type: RESIZE_SCREEN,
+		type: RESIZE_SCREEN ,
 		screenSize: data
 	}
 }

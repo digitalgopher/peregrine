@@ -33,12 +33,14 @@ class CharacterCard extends Component {
 
 		return (
 			<div  className="character-card" onClick={ this.click } style={style}>
-				<div className="character-card-name">{ character.name }</div>
-				<div className="character-card-icon">
+				<div className="character-card-inner">
+					<div className="character-card-name">{ character.name }</div>
+					<div className="character-card-icon">
 
-				</div>
-				<div className="character-card-stats">
-					<StatSmall name={ character.stats.Combat.Eliminations.name } value={ character.stats.Combat.Eliminations.value }/>
+					</div>
+					<div className="character-card-stats">
+						<StatSmall name={ character.stats.Combat.Eliminations.name } value={ character.stats.Combat.Eliminations.value }/>
+					</div>
 				</div>
 			</div>
 		)

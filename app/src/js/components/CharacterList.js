@@ -46,8 +46,8 @@ class CharacterList extends Component {
 
 	render () {
 		return (
-			<div className="characterList">
-				<TransitionGroup component="div" className="characterList-animation">
+			<div className="character-list">
+				<TransitionGroup component="div" className="character-list-animation-container">
 					{ this.props.characterKeys.map( this.renderCharacter )}
 				</TransitionGroup>
 			</div>

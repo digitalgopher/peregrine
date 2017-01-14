@@ -56,6 +56,7 @@ class CharacterSection extends Component {
 							exit={ SlideLeftAndFadeOutAnimation }>
 					<CharacterList characterKeys={ characterKeys }
 								characters={ characters }
+								screenSize={ this.props.screenSize }
 								selectCharacter={ selectCharacter }></CharacterList>
 				</Animation>
 			)
@@ -76,14 +77,16 @@ CharacterSection.propTypes = {
 	characters: PropTypes.object.isRequired,
 	isSelected: PropTypes.string.isRequired,
 
-	selectCharacter: PropTypes.func.isRequired
+	selectCharacter: PropTypes.func.isRequired,
+	screenSize: PropTypes.string
 }
 
 const mapStateToProps = ( state, ownProps ) => ({
 	characterKeys: state.characters.keys,
 	characters: state.characters.byKey,
 	playerIsSelected: state.player.name !== null,
-	isSelected: state.characters.selected || ''
+	isSelected: state.characters.selected || '',
+	screenSize: state.ui.mediaQuery || 'LARGE'
 });
 
 export default connect( mapStateToProps, { selectCharacter } )( CharacterSection );

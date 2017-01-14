@@ -9,7 +9,7 @@ import CharacterFullView from './../components/CharacterFullView';
 import TransitionGroup from 'react-addons-transition-group';
 import Animation from './../animation-components/Animation';
 
-import { mostPlayedCharacter } from './../reducers/characters';
+import { getCharacter } from './../reducers/characters';
 
 import {
 	FadeInAnimation,
@@ -34,15 +34,18 @@ class PlayerSection extends Component {
 	}
 
 	render () {
-		const { player, playerIsSelected, stats, heroMain } = this.props;
+		const { player, playerIsSelected, stats, heroMain, selectedCharacter } = this.props;
 
 		let playerView = null;
 		let searchBoxView = null;
 
 		if ( playerIsSelected ) {
+
+			let selectedCharacterX = selectedCharacter || heroMain;
+
 			playerView =  (
 				<Animation enter={ SlideFromLeftAndFadeInAnimation } exit={ SlideRightAndFadeOutAnimation }>
-					<Player player={ player } stats={ stats } heroMain={heroMain}/>
+					<Player player={ player } stats={ stats } heroMain={ selectedCharacterX }/>
 				</Animation>
 			)
 		}
@@ -73,7 +76,10 @@ PlayerSection.propTypes = {
 
 	player: PropTypes.object,
 	stats: PropTypes.object,
-	heroMain: PropTypes.object
+
+	heroMain: PropTypes.object,
+	selectedHero: PropTypes.object,
+
 }
 
 
@@ -82,7 +88,9 @@ const mapStateToProps = ( state, ownProps ) => ({
 	player: state.player,
 	playerIsSelected: state.player.info !== null,
 	stats: state.player.generalStats || {},
+
 	heroMain: state.characters.mostPlayed,
+	selectedCharacter: getCharacter( state.characters, state.characters.selected )
 });
 
 

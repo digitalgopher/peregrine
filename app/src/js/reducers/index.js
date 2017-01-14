@@ -8,25 +8,29 @@ import {
 	SEARCH_PLAYER,
 	PLAYER_SEARCH_SUCCESS,
 	PLAYER_SEARCH_ADDED_TO_QUEUE,
-	SELECT_CHARACTER
-	 } from './../actions';
+	SELECT_CHARACTER,
+	RESIZE_SCREEN } from './../actions';
 
 
 import player from './player';
 import characters from './characters';
 
-// import { getPluginCategories } from '../../modules/pluginsController/js/pluginsControllerModule';
 
 const initialState = {
 
 	ui: {
 		title: 'GopherWatch',
-		selectedCharacter: null
+		selectedCharacter: null,
+		mediaQuery: 'LARGE', //LARGE, MEDIUM SMALL
 	}
 }
 
 function ui (state = initialState.ui, action ) {
 	switch( action.type ) {
+		case RESIZE_SCREEN:
+			return Object.assign({}, state, {
+				mediaQuery: action.screenSize
+			})
 		case CLEAR_PLAYER:
 			return Object.assign({}, initialState.ui );
 		case PLAYER_SEARCH_ADDED_TO_QUEUE:

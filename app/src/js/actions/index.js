@@ -9,11 +9,20 @@ export function clearPlayer () {
 	}
 }
 
+export const RESIZE_SCREEN = 'RESIZE_SCREEN';
+export function resizeScreen ( data ) {
+	return {
+		type: RESIZE_SCREEN,
+		screenSize: data
+	}
+}
+
 
 export const INIT_APP = 'INIT_APP';
 export function initApp () {
-	return function (dispatch) {
-		firebaseModule.init();
+	firebaseModule.init();
+	return {
+		type: INIT_APP
 	}
 }
 

@@ -6,33 +6,28 @@ import { applyMiddleware, createStore } from 'redux';
 import thunk from 'redux-thunk';
 
 import  GopherWatch  from './reducers'
-import { getSurvey, initApp } from './actions'
+import { initApp, resizeScreen } from './actions'
 
 import App from './containers/App';
 
 
+const logger = store => next => action => {
+	console.groupCollapsed( action.type );
+	console.log( `action fired!: action: ${action.type}` );
+	console.dir( action );
+	console.dir( store.getState() );
+	console.groupEnd();
+	next( action );
+}
 
-// window.Authoring = {};
+const middleWare = applyMiddleware( logger, thunk );
+let store = createStore(GopherWatch, middleWare )
 
-// window.Authoring.init = function () {
-	const logger = store => next => action => {
-		console.groupCollapsed( action.type );
-		console.log( `action fired!: action: ${action.type}` );
-		console.dir( action );
-		console.dir( store.getState() );
-		console.groupEnd();
-		next( action );
-	}
-
-	const middleWare = applyMiddleware( logger, thunk );
-	let store = createStore(GopherWatch, middleWare )
-
-	render(
-		<Provider store={store}>
-			<App> </App>
-		</Provider>,
-		document.getElementById('root')
-	);
-// }
+render(
+	<Provider store={store}>
+		<App> </App>
+	</Provider>,
+	document.getElementById('root')
+);
 
 

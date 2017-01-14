@@ -5,15 +5,22 @@ import { Heroes } from './../modules/heroes';
 
 class PlayerDescription extends Component {
 	render () {
-
 		const { stats, name, player, heroMain } = this.props;
-		let hero = Heroes[ heroMain.value ];
-		let highlightStyle = {
-			color: hero.color
-		}
+		const hero = Heroes[ heroMain.value ];
+		let highlightStyle, totalGamesWon, gamesWonAsHero;
+		let winPercent, winPercentHero = 0;
 
-		let winPercent = (Math.round( (( stats.Game.GamesWon.value / stats.Game.GamesPlayed.value ) * 100 ) *10) / 10);
-		let winPercentHero = (Math.round( (( heroMain.stats.Game.GamesWon.value / heroMain.stats.Game.GamesPlayed.value ) * 100 ) *10) / 10 );
+		totalGamesWon = stats.Game.GamesWon
+		 if ( totalGamesWon ) {
+			 winPercent = (Math.round( (( totalGamesWon.value / stats.Game.GamesPlayed.value ) * 100 ) *10) / 10);
+		 }
+
+		 gamesWonAsHero = heroMain.stats.Game.GamesWon;
+		 if ( gamesWonAsHero ) {
+			 winPercentHero = (Math.round( (( gamesWonAsHero.value / heroMain.stats.Game.GamesPlayed.value ) * 100 ) *10) / 10 );
+		 }
+
+		highlightStyle = { color: hero.color };
 
 		return (
 			<p className="player-description">
@@ -24,10 +31,10 @@ class PlayerDescription extends Component {
 				<span style={highlightStyle} className="player-description-highlight">{ player.info.SR }</span>
 				<span>. They win </span>
 				<span style={highlightStyle} className="player-description-highlight">{ winPercent }%</span>
-				<span> of their games in Total, and </span>
-				<span style={highlightStyle} className="">{ winPercentHero }%</span>
+				<span> of their games in total, and </span>
+				<span style={highlightStyle} className="player-description-highlight">{ winPercentHero }%</span>
 				<span> when they play as </span>
-				<span style={highlightStyle} className="">{ hero.name }</span>
+				<span style={highlightStyle} className="player-description-highlight">{ hero.name }</span>
 			</p>
 		)
 	}
@@ -36,6 +43,11 @@ class PlayerDescription extends Component {
 PlayerDescription.propTypes = {
 	player: PropTypes.object.isRequired,
 	stats: PropTypes.object.isRequired,
+}
+
+
+function getGamesWon (value) {
+	return value || 0;
 }
 
 export default PlayerDescription

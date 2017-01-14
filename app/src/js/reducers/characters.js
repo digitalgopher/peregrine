@@ -7,7 +7,8 @@ import {
 const initialState = {
 	keys: [],
 	byKey: {},
-	mostPlayed: null
+	mostPlayed: null,
+	selected: null
 }
 
 export default function characters ( state = initialState, action ) {

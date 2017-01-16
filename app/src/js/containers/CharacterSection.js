@@ -21,7 +21,13 @@ import {
 	SlideRightAndFadeOutAnimation,
 
 	SlideFromLeftAndFadeInAnimation,
-	SlideLeftAndFadeOutAnimation
+	SlideLeftAndFadeOutAnimation,
+
+	SlideDownAndFadeOutAnimation,
+	SlideFromBottomAndFadeInAnimation,
+
+	SlideUpAndFadeOutAnimation,
+	SlideFromTopAndFadeInAnimation
  } from './../animations';
 
 

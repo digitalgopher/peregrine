@@ -1,15 +1,22 @@
 //fade
-export * from  './fadeIn';
+export * from  './fade-in';
 
 //scale
-export * from './scaleUp';
-export * from './scaleDown';
+export * from './scale-up';
+export * from './scale-down';
 
 //slide
-export * from './slideLeft';
-export * from './slideFromLeft';
-export * from './slideRight';
-export * from './slideFromRight';
+export * from './slide-left';
+export * from './slide-right';
+
+export * from './slide-from-left';
+export * from './slide-from-right';
+
+export * from './slide-down';
+export * from './slide-up';
+
+export * from './slide-from-bottom';
+export * from './slide-from-top';
 
 
 //easing

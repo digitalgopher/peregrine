@@ -1,6 +1,7 @@
 .character-list > .character-list-animation-container {
 	display: flex;
 	flex-flow: wrap;
+	// margin: -20px;
 }
 
 @media (max-width: 500px) {
@@ -12,7 +13,9 @@
 
 
 .character-list > .character-list-animation-container > * {
-	width: calc( 100% * .25 - 2%);
+	width: 25%;
+	padding: 20px;
+	box-sizing: border-box;
 }
 
 @media (max-width: 500px) {

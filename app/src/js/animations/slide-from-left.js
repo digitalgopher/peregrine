@@ -1,8 +1,14 @@
 export const SlideFromLeftAnimation = {
 	keyframes: function () {
 		return [
-			{ transform: 'translateX(-100%)', offset: 0 },
-			{ transform: 'translateX(0)', offset: 1 }
+			{ 
+				transform: 'translateX(-100%)', 
+				offset: 0 
+			},
+			{ 
+				transform: 'translateX(0)', 
+				offset: 1 
+			}
 		]
 	},
 
@@ -15,8 +21,16 @@ export const SlideFromLeftAnimation = {
 export const SlideFromLeftAndFadeInAnimation = {
 	keyframes: function () {
 		return [
-			{ transform: 'translateX(-100%)', opacity: 0, offset: 0 },
-			{ transform: 'translateX(0)', opacity: 1, offset: 1 }
+			{ 
+				transform: 'translateX(-100%)', 
+				opacity: 0, 
+				offset: 0 
+			},
+			{ 
+				transform: 'translateX(0)', 
+				opacity: 1, 
+				offset: 1 
+			}
 		]
 	},
 

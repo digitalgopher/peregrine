@@ -70,7 +70,7 @@ class CharacterSection extends Component {
 
 		return (
 			<div className="content">
-				<TransitionGroup component="div" className="characterSection-animation">
+				<TransitionGroup component="div" className="character-section-animation">
 					{ view }
 					{ selectedView }
 				</TransitionGroup>

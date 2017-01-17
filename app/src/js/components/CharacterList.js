@@ -7,6 +7,7 @@ import { Heroes } from './../modules/heroes';
 import Animation from './../animation-components/Animation';
 import {
 	ScaleUpAnimation,
+	ScaleDownAnimation,
 	DecelerationCurve } from './../animations';
 //css
 require( './../../style/characterList.scss');
@@ -30,6 +31,7 @@ class CharacterList extends Component {
 
 		return <Animation appear={ ScaleUpAnimation }
 							easing={ DecelerationCurve }
+							exit={ ScaleDownAnimation }
 							delay={ idx } key={key + idx } >
 			<Character
 				style={ style }

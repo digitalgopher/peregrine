@@ -1,3 +1,9 @@
+
+//so the two character sections can animate correctly.
+.character-section-animation > .animation-item-container {
+	position: absolute;
+}
+
 .character-card {
 	display: block;
 	height: 300px;

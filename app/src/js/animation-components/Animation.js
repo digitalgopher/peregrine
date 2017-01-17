@@ -89,7 +89,7 @@ class Animation extends Component {
 
 	render () {
 		return (
-			<div className="animation-container" ref={ node => this.refNode = node }>
+			<div className="animation-item-container" ref={ node => this.refNode = node }>
 				{ this.props.children }
 			</div>
 		)

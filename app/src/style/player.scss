@@ -19,7 +19,16 @@
 }
 
 .player-avatar {
+	position: relative;
+	max-width: 128px;
+	max-height: 128px;
+
+}
+
+.player-avatar-scrim {
+	position: absolute;
 	width: 100%;
+	height: 100%;
 }
 
 @media (max-width: 500px) {

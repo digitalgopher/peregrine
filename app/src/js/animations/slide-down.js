@@ -1,13 +1,13 @@
 export const SlideDownAnimation = {
 	keyframes: function () {
 		return [
-			{ 
-				transform: 'transformY(0)', 
-				offset: 0 
+			{
+				transform: 'translateY(0)',
+				offset: 0
 			},
-			{ 
-				transform: 'transformY(100%)', 
-				offset: 1 
+			{
+				transform: 'translateY(100%)',
+				offset: 1
 			}
 		]
 	},
@@ -20,22 +20,22 @@ export const SlideDownAnimation = {
 export const SlideDownAndFadeOutAnimation = {
 	keyframes: function () {
 		return [
-			{ 
-				transform: 'transformY(0)', 
-				opacity: 1, 
-				offset: 0 
+			{
+				transform: 'translateY(0)',
+				opacity: 1,
+				offset: 0
 			},
-			{ 
-				transform: 'transformY(100%)', 
-				opacity: 0, 
-				offset: 1 
+			{
+				transform: 'translateY(100%)',
+				opacity: 0,
+				offset: 1
 			}
 		]
 	},
 
 	initialStyles: {
 		opacity: 1,
-		transform: 'transformY(0)',
+		transform: 'translateY(0)',
 		transformOrigin: '50%'
-	}	
+	}
 }

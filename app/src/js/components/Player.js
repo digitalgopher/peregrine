@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 
 import PlayerDescription from './PlayerDescription';
-
 require( './../../style/player.scss');
 
 class Player extends Component {
@@ -30,3 +29,9 @@ class Player extends Component {
 }
 
 export default Player
+
+
+function FirstChild(props) {
+  const childrenArray = React.Children.toArray(props.children);
+  return childrenArray[0] || null;
+}

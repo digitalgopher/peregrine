@@ -1,13 +1,13 @@
 export const SlideFromBottomAnimation = {
 	keyframes: function () {
 		return [
-			{ 
-				transform: 'translateY(100%)', 
-				offset: 0 
+			{
+				transform: 'translateY(100%)',
+				offset: 0
 			},
-			{ 
-				transform: 'translateY(0', 
-				offset: 1 
+			{
+				transform: 'translateY(0',
+				offset: 1
 			}
 		]
 	},
@@ -21,15 +21,15 @@ export const SlideFromBottomAnimation = {
 export const SlideFromBottomAndFadeInAnimation = {
 		keyframes: function () {
 		return [
-			{ 
+			{
 				transform: 'translateY(100%)',
 				opacity: 0,
-				offset: 0 
+				offset: 0
 			},
-			{ 
-				transform: 'translateY(0', 
+			{
+				transform: 'translateY(0)',
 				opacity: 1,
-				offset: 1 
+				offset: 1
 			}
 		]
 	},

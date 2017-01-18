@@ -47,7 +47,7 @@ class CharacterSection extends Component {
 
 		if ( isSelected ) {
 			selectedView = (
-				<Animation enter={ SlideFromRightAndFadeInAnimation } exit={ SlideRightAndFadeOutAnimation }>
+				<Animation enter={ SlideFromTopAndFadeInAnimation } exit={ SlideUpAndFadeOutAnimation }>
 					<div>
 						<button onClick={ () => { selectCharacter( null )} } >Back</button>
 						<CharacterFullView character={ characters[ isSelected ]}></CharacterFullView>
@@ -58,8 +58,8 @@ class CharacterSection extends Component {
 		else {
 			view = (
 				<Animation appear={ FadeInAnimation }
-							enter={ SlideFromLeftAndFadeInAnimation }
-							exit={ SlideLeftAndFadeOutAnimation }>
+							enter={ SlideFromBottomAndFadeInAnimation }
+							exit={ SlideDownAndFadeOutAnimation }>
 					<CharacterList characterKeys={ characterKeys }
 								characters={ characters }
 								screenSize={ this.props.screenSize }

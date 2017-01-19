@@ -21,7 +21,7 @@ class PlayerDescription extends Component {
 		 }
 
 		highlightStyle = { color: hero.color };
-
+		return null;
 		return (
 			<p className="player-description">
 				<span style={highlightStyle} className="player-description-highlight">{ player.name }</span>

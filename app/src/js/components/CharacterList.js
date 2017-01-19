@@ -32,7 +32,8 @@ class CharacterList extends Component {
 		return <Animation appear={ ScaleUpAnimation }
 							easing={ DecelerationCurve }
 							exit={ ScaleDownAnimation }
-							delay={ idx } key={key + idx } >
+							delay={ idx * 50 }
+							key={key + idx } >
 			<Character
 				style={ style }
 				isSelected={ this.props.selected === key }

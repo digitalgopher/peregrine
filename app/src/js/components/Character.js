@@ -4,6 +4,7 @@ import { Heroes } from './../modules/heroes';
 import { boxShadow } from './../modules/style';
 
 import CharacterCard from './CharacterCard';
+import RippleAnimation from './../animation-components/RippleAnimation';
 
 require( './../../style/character.scss');
 
@@ -20,9 +21,9 @@ class Character extends Component {
 
 	render () {
 		return <CharacterCard
-					character={ this.props.character }
-					hero={ this.props.hero }
-					onSelect={this.onCharacterCardSelect}></CharacterCard>
+				character={ this.props.character }
+				hero={ this.props.hero }
+				onSelect={this.onCharacterCardSelect}></CharacterCard>
 	}
 }
 

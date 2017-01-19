@@ -41,7 +41,7 @@ class Animation extends Component {
 			{
 				duration: timing.duration, //milliseconds
 				easing: timing.easing, //'linear', a bezier curve, etc.
-				delay: timing.delay * 50, //milliseconds
+				delay: timing.delay, //milliseconds
 				iterations: 1, //or a number
 				direction: 'normal', //'normal', 'reverse', etc.
 				fill: 'forwards' //'backwards', 'both', 'none', 'auto'

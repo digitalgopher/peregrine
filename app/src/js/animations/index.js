@@ -1,5 +1,6 @@
 //fade
 export * from  './fade-in';
+export * from  './fade-out';
 
 //scale
 export * from './scale-up';

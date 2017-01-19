@@ -10,6 +10,8 @@ import Animation from './../animation-components/Animation';
 
 import {
 	FadeInAnimation,
+	FadeOutAnimation,
+
 	ScaleDownAnimation,
 	ScaleUpAnimation,
 	SlideFromRightAnimation,
@@ -25,6 +27,7 @@ import {
 
 	SlideDownAndFadeOutAnimation,
 	SlideFromBottomAndFadeInAnimation,
+	SlideFromNearTopAndFadeInAnimation,
 
 	SlideUpAndFadeOutAnimation,
 	SlideFromTopAndFadeInAnimation
@@ -47,7 +50,7 @@ class CharacterSection extends Component {
 
 		if ( isSelected ) {
 			selectedView = (
-				<Animation enter={ SlideFromTopAndFadeInAnimation } exit={ SlideUpAndFadeOutAnimation }>
+				<Animation enter={ SlideFromNearTopAndFadeInAnimation } exit={ FadeOutAnimation }>
 					<div>
 						<button onClick={ () => { selectCharacter( null )} } >Back</button>
 						<CharacterFullView character={ characters[ isSelected ]}></CharacterFullView>
@@ -58,8 +61,8 @@ class CharacterSection extends Component {
 		else {
 			view = (
 				<Animation appear={ FadeInAnimation }
-							enter={ SlideFromBottomAndFadeInAnimation }
-							exit={ SlideDownAndFadeOutAnimation }>
+							enter={ SlideFromNearTopAndFadeInAnimation }
+							exit={ FadeOutAnimation }>
 					<CharacterList characterKeys={ characterKeys }
 								characters={ characters }
 								screenSize={ this.props.screenSize }

@@ -3,6 +3,10 @@ import StatCategory from './StatCategory';
 import { boxShadow } from './../modules/style';
 import StatSmall from './StatSmall';
 
+// import { RippleAnimation } from './../animations';
+
+import RippleAnimation from './../animation-components/RippleAnimation';
+
 require( './../../style/character.scss');
 
 class CharacterCard extends Component {
@@ -10,6 +14,10 @@ class CharacterCard extends Component {
 	constructor ( props ) {
 		super (props);
 		this.click = this.click.bind( this );
+		this.state = {
+			mouseDownEvent: null,
+			mouseUpEvent: null
+		}
 	}
 
 	click () {
@@ -32,7 +40,7 @@ class CharacterCard extends Component {
 		}
 
 		return (
-			<div  className="character-card" onClick={ this.click } style={style}>
+			<div  className="character-card" style={style}>
 				<div className="character-card-inner">
 					<div className="character-card-name">{ character.name }</div>
 					<div className="character-card-icon">
@@ -42,6 +50,8 @@ class CharacterCard extends Component {
 						<StatSmall name={ character.stats.Combat.Eliminations.name } value={ character.stats.Combat.Eliminations.value }/>
 					</div>
 				</div>
+
+				<RippleAnimation onFinish={ this.click} color={ hero.color }/>
 			</div>
 		)
 	}

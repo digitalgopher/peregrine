@@ -12,6 +12,10 @@ class Animation extends Component {
 			duration: 400,
 			easing: 'ease-in-out'
 		}
+
+		this.state = {
+			players: null
+		}
 	}
 
 	_clearStyles ( animation ) {
@@ -20,23 +24,24 @@ class Animation extends Component {
 		});
 	}
 
-	_animate ( animation ) {
+	_animate ( animation, node ) {
 
-		if( this.refNode.getAnimations()[0]) {
-			this.refNode.getAnimations()[ 0 ].cancel();
-		}
+		// if( this.refNode.getAnimations()[0]) {
+		// 	this.refNode.getAnimations()[ 0 ].cancel();
+		// }
 
-		Object.keys( animation.initialStyles ).forEach( name => {
-			this.refNode.style[ name ] = animation.initialStyles[ name ];
-		});
-
+		// if ( animationKey === this.props.mountAnimationName ) {
+		// 	Object.keys( animation.initialStyles ).forEach( name => {
+		// 		this.refNode.style[ name ] = animation.initialStyles[ name ];
+		// 	});
+		// }
 		let timing = Object.assign( {}, {
 			delay: this.props.delay ||  this.defaultEffectTiming.delay,
 			duration: this.props.duration ||  this.defaultEffectTiming.duration,
 			easing: this.props.easing ||  this.defaultEffectTiming.easing
 		});
 
-		return this.refNode.animate(
+		let player = node.animate(
 			animation.keyframes(),
 			{
 				duration: timing.duration, //milliseconds
@@ -47,50 +52,80 @@ class Animation extends Component {
 				fill: 'forwards' //'backwards', 'both', 'none', 'auto'
 			}
 		);
+
+		// player.pause();
+		// console.log( player.playState );
+		return player;
+
+		
+
 	}
 
-	componentWillLeave (callback) {
+	// componentWillLeave (callback) {
 
-		if ( !this.props.exit ) {
-			callback();
-			return;
-		}
+	// 	if ( !this.props.exit ) {
+	// 		callback();
+	// 		return;
+	// 	}
 
-		let animation = this._animate( this.props.exit );
-		animation.onfinish = () => {
-			this._clearStyles( this.props.exit );
-			callback()
-		};
-	}
+	// 	let animation = this._animate( this.props.exit );
+	// 	animation.onfinish = () => {
+	// 		this._clearStyles( this.props.exit );
+	// 		callback()
+	// 	};
+	// }
 
-	componentWillEnter (callback) {
-		if ( !this.props.enter ) {
-			callback();
-			return;
-		}
-		let animation = this._animate( this.props.enter );
-		animation.onfinish = () => {
-			this._clearStyles( this.props.enter );
-			callback()
-		};
-	}
+	// componentWillEnter (callback) {
+	// 	if ( !this.props.enter ) {
+	// 		callback();
+	// 		return;
+	// 	}
+	// 	let animation = this._animate( this.props.enter );
+	// 	animation.onfinish = () => {
+	// 		this._clearStyles( this.props.enter );
+	// 		callback()
+	// 	};
+	// }
 
-	componentWillAppear (callback) {
-		if ( !this.props.appear ) {
-			callback();
-			return;
-		}
-		let animation = this._animate( this.props.appear );
-		animation.onfinish = () => {
-			this._clearStyles( this.props.appear );
-			callback()
-		};
+	// componentWillAppear (callback) {
+	// 	if ( !this.props.appear ) {
+	// 		callback();
+	// 		return;
+	// 	}
+	// 	let animation = this._animate( this.props.appear );
+	// 	animation.onfinish = () => {
+	// 		this._clearStyles( this.props.appear );
+	// 		callback()
+	// 	};
+	// }
+
+
+	componentDidMount () {
+		const { animations } = this.props;
+		let node = this.refNode;
+		let players = Object.keys( animations ).reduce( ( prev, curr) => {
+			let startAnimation = () => {
+				return this._animate( animations[ curr ], node );
+			}
+			prev[ curr ] = startAnimation;
+			return prev;
+		}, {} );
+		
+		this.setState({
+			players: players
+		})
 	}
 
 	render () {
+		const { children } = this.props;
+		const child = React.Children.only( children );
+
 		return (
 			<div className="animation-item-container" ref={ node => this.refNode = node }>
-				{ this.props.children }
+				{ React.cloneElement ( child, {
+					players: this.state.players
+				})
+			}
 			</div>
 		)
 	}

@@ -29,30 +29,36 @@ class CharacterList extends Component {
 			opacity: !isSelected && this.props.selected !== null ? 0.5 : 1
 		}
 
-		return <Animation appear={ ScaleUpAnimation }
-							easing={ DecelerationCurve }
-							exit={ ScaleDownAnimation }
-							delay={ idx * 50 }
-							key={key + idx } >
-			<Character
+		return <Character
+				key={ key }
 				style={ style }
 				isSelected={ this.props.selected === key }
 				onSelect={this.onSelectCharacter}
 				hero={ Heroes[key] }
 				character={ this.props.characters[ key ]}></Character>
-			</Animation>
+	}
+
+	componentDidUpdate ( prevProps, prevState ) {
+		const { entryAnimation, players } = this.props;
+		if ( players[ entryAnimation ] ) {
+			players[ entryAnimation ]();
+		}
 	}
 
 	onSelectCharacter ( key, node ) {
-		this.props.selectCharacter( key );
+		const { exitAnimation, players } = this.props;
+		const animation = players[ exitAnimation ](); 
+		animation.onfinish = ( ) => {
+			this.props.selectCharacter( key );
+		}
 	}
+
+	
 
 	render () {
 		return (
 			<div className="character-list">
-				<TransitionGroup component="div" className="character-list-animation-container">
 					{ this.props.characterKeys.map( this.renderCharacter )}
-				</TransitionGroup>
 			</div>
 		)
 	}

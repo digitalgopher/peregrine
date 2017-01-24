@@ -9,6 +9,9 @@ import CharacterFullView from './../components/CharacterFullView';
 import TransitionGroup from 'react-addons-transition-group';
 import Animation from './../animation-components/Animation';
 
+import RippleAnimation from './../animation-components/RippleAnimation';
+
+
 import { getCharacter } from './../reducers/characters';
 
 import {
@@ -44,22 +47,22 @@ class PlayerSection extends Component {
 			let selectedCharacterX = selectedCharacter || heroMain;
 
 			playerView =  (
-				<Animation enter={ SlideFromLeftAndFadeInAnimation } exit={ SlideRightAndFadeOutAnimation }>
 					<Player player={ player } stats={ stats } heroMain={ selectedCharacterX }/>
-				</Animation>
 			)
 		}
 		else {
 			searchBoxView = (
-				<Animation enter={ SlideFromRightAndFadeInAnimation } exit={ SlideRightAndFadeOutAnimation }>
 					<SearchBox />
-				</Animation>
 			)
 		}
 
 		return (
 			<div className="playerSection">
-				<div className="player-bg"></div>
+				<div className="player-bg">
+				
+					
+				</div>
+				<RippleAnimation color="white" />
 				<div className="content">
 					<TransitionGroup component="div" className="playerSection-animation-container">
 						{ playerView }

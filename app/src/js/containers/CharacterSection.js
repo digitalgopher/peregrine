@@ -48,35 +48,40 @@ class CharacterSection extends Component {
 			return null;
 		}
 
+		let animations = {
+			fadein: FadeInAnimation,
+			fadeout: FadeOutAnimation
+		};
+
+		let animations2 = {
+			fadein: FadeInAnimation, 
+			fadeout: FadeOutAnimation
+		};
+
 		if ( isSelected ) {
 			selectedView = (
-				<Animation enter={ SlideFromNearTopAndFadeInAnimation } exit={ FadeOutAnimation }>
-					<div>
-						<button onClick={ () => { selectCharacter( null )} } >Back</button>
-						<CharacterFullView character={ characters[ isSelected ]}></CharacterFullView>
-					</div>
+				<Animation animations = { animations2 } mountAnimationName="fadein" >					
+					<CharacterFullView entryAnimation="fadein" exitAnimation="fadeout" onSelect={ selectCharacter } character={ characters[ isSelected ]}></CharacterFullView>
 				</Animation>
 			)
 		}
 		else {
 			view = (
-				<Animation appear={ FadeInAnimation }
-							enter={ SlideFromNearTopAndFadeInAnimation }
-							exit={ FadeOutAnimation }>
-					<CharacterList characterKeys={ characterKeys }
-								characters={ characters }
-								screenSize={ this.props.screenSize }
-								selectCharacter={ selectCharacter }></CharacterList>
+				<Animation animations={ animations } mountAnimationName="fadein">
+						<CharacterList characterKeys={ characterKeys }
+									entryAnimation="fadein"
+									exitAnimation="fadeout"
+									characters={ characters }
+									screenSize={ this.props.screenSize }
+									selectCharacter={ selectCharacter }></CharacterList>
 				</Animation>
 			)
 		}
 
 		return (
 			<div className="content">
-				<TransitionGroup component="div" className="character-section-animation">
 					{ view }
 					{ selectedView }
-				</TransitionGroup>
 			</div>
 		)
 	}

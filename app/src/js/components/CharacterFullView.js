@@ -3,6 +3,9 @@ import React, { Component, PropTypes } from 'react';
 import StatCategory from './StatCategory';
 import Character from './Character';
 
+import { OffenseIcon, DefenseIcon }  from './../svg-components';
+
+
 require( './../../style/character.scss');
 
 
@@ -21,7 +24,7 @@ class CharacterFullView extends Component {
 		};
 	}
 
-	componentDidUpdate () {
+	componentDidUpdate (prevProps, prevState) {
 		const { entryAnimation, players } = this.props;
 		if ( players[ entryAnimation ] ) {
 			players[ entryAnimation ]();
@@ -37,6 +40,10 @@ class CharacterFullView extends Component {
 
 				<div className="characterFullView">
 					<button onClick={ this.back } >Back</button>
+					<div style={{ width: '50px', height: '50px' }}>
+					<OffenseIcon />
+					<DefenseIcon />
+					</div>
 					{ categories }
 			</div>
 		)

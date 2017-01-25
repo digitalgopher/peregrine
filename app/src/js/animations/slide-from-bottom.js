@@ -45,16 +45,16 @@ export const SlideFromNearTopAndFadeInAnimation = {
 	keyframes: function () {
 		return [
 			{
-				transform: 'translateY(200px)',
+				transform: 'translateY(100px) scaleX( .9 )',
 				opacity: 0,
 				offset: 0
 			},
 			{
 				opacity: 1,
-				offset: 0.25
+				offset: 0.3
 			},
 			{
-				transform: 'translateY(0)',
+				transform: 'translateY(0) scaleX( 1 )',
 				opacity: 1,
 				offset: 1
 			}
@@ -62,7 +62,7 @@ export const SlideFromNearTopAndFadeInAnimation = {
 	},
 
 	initialStyles: {
-		transform: 'translateY(200px)',
+		transform: 'translateY(100px)',
 		opacity: 0,
 		transformOrigin: '50%'
 	}

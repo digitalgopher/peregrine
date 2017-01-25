@@ -6,7 +6,6 @@ import SearchBox from './../containers/SearchBox';
 
 import CharacterFullView from './../components/CharacterFullView';
 
-import TransitionGroup from 'react-addons-transition-group';
 import Animation from './../animation-components/Animation';
 
 import RippleAnimation from './../animation-components/RippleAnimation';
@@ -59,15 +58,13 @@ class PlayerSection extends Component {
 		return (
 			<div className="playerSection">
 				<div className="player-bg">
-				
-					
+
+
 				</div>
 				<RippleAnimation color="white" />
 				<div className="content">
-					<TransitionGroup component="div" className="playerSection-animation-container">
 						{ playerView }
 						{ searchBoxView }
-					</TransitionGroup>
 				</div>
 			</div>
 		)

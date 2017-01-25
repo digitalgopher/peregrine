@@ -3,8 +3,6 @@ import StatCategory from './StatCategory';
 import { boxShadow } from './../modules/style';
 import StatSmall from './StatSmall';
 
-// import { RippleAnimation } from './../animations';
-
 import RippleAnimation from './../animation-components/RippleAnimation';
 
 require( './../../style/character.scss');
@@ -51,7 +49,7 @@ class CharacterCard extends Component {
 					</div>
 				</div>
 
-				<RippleAnimation onFinish={ this.click} color={ hero.color }/>
+				<RippleAnimation onFinish={ this.click } color={ hero.color }/>
 			</div>
 		)
 	}

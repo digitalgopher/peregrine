@@ -1,5 +1,4 @@
 import React, { PropTypes, Component } from 'react';
-import TransitionGroup from 'react-addons-transition-group';
 
 import Character from './Character';
 import { Heroes } from './../modules/heroes';
@@ -29,31 +28,42 @@ class CharacterList extends Component {
 			opacity: !isSelected && this.props.selected !== null ? 0.5 : 1
 		}
 
-		return <Character
-				key={ key }
+		let animations = {
+			entry: {
+				animation: ScaleUpAnimation,
+				easing: DecelerationCurve,
+				delay: idx * 60
+			}
+		}
+
+		return <Animation key={ key } animations={animations} mountName="entry">
+			<Character
+
 				style={ style }
 				isSelected={ this.props.selected === key }
 				onSelect={this.onSelectCharacter}
 				hero={ Heroes[key] }
 				character={ this.props.characters[ key ]}></Character>
+			</Animation>
 	}
 
-	componentDidUpdate ( prevProps, prevState ) {
-		const { entryAnimation, players } = this.props;
-		if ( players[ entryAnimation ] ) {
-			players[ entryAnimation ]();
-		}
-	}
+	// componentDidUpdate ( prevProps, prevState ) {
+	// 	const { entryAnimation, players } = this.props;
+	// 	if ( players[ entryAnimation ] ) {
+	// 		players[ entryAnimation ]();
+	// 	}
+	// }
 
 	onSelectCharacter ( key, node ) {
 		const { exitAnimation, players } = this.props;
-		const animation = players[ exitAnimation ](); 
-		animation.onfinish = ( ) => {
+		if ( this.animation && this.animation.playState === 'running' ) {
+			return;
+		}
+		this.animation = players[ exitAnimation ]();
+		this.animation.onfinish = ( ) => {
 			this.props.selectCharacter( key );
 		}
 	}
-
-	
 
 	render () {
 		return (

@@ -24,21 +24,18 @@ class Animation extends Component {
 		});
 	}
 
-	_animate ( animation, node ) {
+	_animate ( animationDetails, node ) {
 
-		// if( this.refNode.getAnimations()[0]) {
-		// 	this.refNode.getAnimations()[ 0 ].cancel();
-		// }
+		const { easing, animation, delay, duration } = animationDetails;
 
-		// if ( animationKey === this.props.mountAnimationName ) {
-		// 	Object.keys( animation.initialStyles ).forEach( name => {
-		// 		this.refNode.style[ name ] = animation.initialStyles[ name ];
-		// 	});
-		// }
+		Object.keys( animation.initialStyles ).forEach( name => {
+			node.style[ name ] = animation.initialStyles[ name ];
+		});
+
 		let timing = Object.assign( {}, {
-			delay: this.props.delay ||  this.defaultEffectTiming.delay,
-			duration: this.props.duration ||  this.defaultEffectTiming.duration,
-			easing: this.props.easing ||  this.defaultEffectTiming.easing
+			delay: delay ||  0,
+			duration: duration ||  400,
+			easing: easing ||  'ease-in-out'
 		});
 
 		let player = node.animate(
@@ -53,64 +50,22 @@ class Animation extends Component {
 			}
 		);
 
-		// player.pause();
-		// console.log( player.playState );
 		return player;
-
-		
-
 	}
-
-	// componentWillLeave (callback) {
-
-	// 	if ( !this.props.exit ) {
-	// 		callback();
-	// 		return;
-	// 	}
-
-	// 	let animation = this._animate( this.props.exit );
-	// 	animation.onfinish = () => {
-	// 		this._clearStyles( this.props.exit );
-	// 		callback()
-	// 	};
-	// }
-
-	// componentWillEnter (callback) {
-	// 	if ( !this.props.enter ) {
-	// 		callback();
-	// 		return;
-	// 	}
-	// 	let animation = this._animate( this.props.enter );
-	// 	animation.onfinish = () => {
-	// 		this._clearStyles( this.props.enter );
-	// 		callback()
-	// 	};
-	// }
-
-	// componentWillAppear (callback) {
-	// 	if ( !this.props.appear ) {
-	// 		callback();
-	// 		return;
-	// 	}
-	// 	let animation = this._animate( this.props.appear );
-	// 	animation.onfinish = () => {
-	// 		this._clearStyles( this.props.appear );
-	// 		callback()
-	// 	};
-	// }
-
 
 	componentDidMount () {
 		const { animations } = this.props;
 		let node = this.refNode;
-		let players = Object.keys( animations ).reduce( ( prev, curr) => {
-			let startAnimation = () => {
-				return this._animate( animations[ curr ], node );
+		let players = Object.keys( animations ).reduce( ( result, animationName ) => {
+			if ( this.props.mountName === animationName ) {
+				result[animationName ] = this._animate( animations[ animationName ], node )
 			}
-			prev[ curr ] = startAnimation;
-			return prev;
+			result[ animationName ] = () => {
+				return this._animate( animations[ animationName ], node );
+			}
+			return result;
 		}, {} );
-		
+
 		this.setState({
 			players: players
 		})

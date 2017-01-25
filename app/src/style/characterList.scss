@@ -1,25 +1,25 @@
-.character-list > .character-list-animation-container {
+.character-list {
 	display: flex;
 	flex-flow: wrap;
 	// margin: -20px;
 }
 
 @media (max-width: 500px) {
-	.character-list > .character-list-animation-container {
+	.character-list {
 		flex-flow: column;
 	}
 }
 
 
 
-.character-list > .character-list-animation-container > * {
+.character-list > * {
 	width: 25%;
 	padding: 20px;
 	box-sizing: border-box;
 }
 
 @media (max-width: 500px) {
-	.character-list > .character-list-animation-container > * {
+	.character-list > * {
 		width: 100%;
 	}
 }

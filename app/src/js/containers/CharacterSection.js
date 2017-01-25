@@ -4,7 +4,6 @@ import CharacterList from '../components/CharacterList';
 import { selectCharacter } from './../actions';
 import CharacterFullView from './../components/CharacterFullView';
 
-import TransitionGroup from 'react-addons-transition-group';
 import Animation from './../animation-components/Animation';
 
 
@@ -30,7 +29,10 @@ import {
 	SlideFromNearTopAndFadeInAnimation,
 
 	SlideUpAndFadeOutAnimation,
-	SlideFromTopAndFadeInAnimation
+	SlideFromTopAndFadeInAnimation,
+
+	DecelerationCurve,
+	AccelerationCurve
  } from './../animations';
 
 
@@ -49,28 +51,39 @@ class CharacterSection extends Component {
 		}
 
 		let animations = {
-			fadein: FadeInAnimation,
-			fadeout: FadeOutAnimation
+			entry: {
+				animation: FadeInAnimation,
+			},
+			exit: {animation: FadeOutAnimation}
 		};
 
 		let animations2 = {
-			fadein: FadeInAnimation, 
-			fadeout: FadeOutAnimation
+			entry: {
+				animation: SlideFromNearTopAndFadeInAnimation,
+				easing: DecelerationCurve
+			},
+			exit: {
+				animation: FadeOutAnimation,
+				easing: AccelerationCurve
+			}
 		};
 
 		if ( isSelected ) {
 			selectedView = (
-				<Animation animations = { animations2 } mountAnimationName="fadein" >					
-					<CharacterFullView entryAnimation="fadein" exitAnimation="fadeout" onSelect={ selectCharacter } character={ characters[ isSelected ]}></CharacterFullView>
+				<Animation animations = { animations2 }>
+					<CharacterFullView
+						entryAnimation="entry"
+						exitAnimation="exit"
+						onSelect={ selectCharacter }
+						character={ characters[ isSelected ]}></CharacterFullView>
 				</Animation>
 			)
 		}
 		else {
 			view = (
-				<Animation animations={ animations } mountAnimationName="fadein">
+				<Animation animations={ animations } mountName="entry">
 						<CharacterList characterKeys={ characterKeys }
-									entryAnimation="fadein"
-									exitAnimation="fadeout"
+									exitAnimation="exit"
 									characters={ characters }
 									screenSize={ this.props.screenSize }
 									selectCharacter={ selectCharacter }></CharacterList>

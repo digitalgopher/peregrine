@@ -33,7 +33,7 @@
     "webpack-dev-server": "^1.16.2"
   },
   "scripts": {
-    "start": "webpack-dev-server --hot --inline --content-base build/ --display-reasons",
+    "start": "webpack-dev-server --hot --inline --content-base build/ --display-reasons --port 3030",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",

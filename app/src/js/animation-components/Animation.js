@@ -53,6 +53,15 @@ class Animation extends Component {
 		return player;
 	}
 
+	componentDidUpdate ( prevProps, prevState ) {
+		if( this.props.playNow ) {
+			if ( this.props.playNow.name !== prevProps.playNow.name ) {
+				let animationPlayer = this.state.players[ this.props.playNow.name ]();
+				animationPlayer.onfinish = this.props.playNow.onfinish;
+			}
+		}
+	}
+
 	componentDidMount () {
 		const { animations } = this.props;
 		let node = this.refNode;

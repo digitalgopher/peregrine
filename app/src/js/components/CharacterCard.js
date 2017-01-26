@@ -37,6 +37,13 @@ class CharacterCard extends Component {
 
 		}
 
+		let elimsName = "Eliminations";
+		let elims = 0;
+		if (character.stats.Combat.Eliminations) {
+			elims = character.stats.Combat.Eliminations.value;
+		}
+
+
 		return (
 			<div  className="character-card" style={style}>
 				<div className="character-card-inner">
@@ -45,7 +52,9 @@ class CharacterCard extends Component {
 
 					</div>
 					<div className="character-card-stats">
-						<StatSmall name={ character.stats.Combat.Eliminations.name } value={ character.stats.Combat.Eliminations.value }/>
+						<StatSmall
+							name={ elimsName }
+							value={ elims }/>
 					</div>
 				</div>
 

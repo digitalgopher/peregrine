@@ -15,6 +15,7 @@ export const Heroes = {
 	"0x02E0000000000003": {
 		name: 'Tracer',
 		color: 'rgb(248, 145, 27)',
+		icon: 'https://firebasestorage.googleapis.com/v0/b/gopherwatch-664c5.appspot.com/o/tracer-icon.png?alt=media&token=3cfbcfe7-83ff-4be3-85ed-f4a548eb4a0c',
 		abilities: {
 			primary: {
 				name: "Pulse Pistols",
@@ -63,6 +64,27 @@ export const Heroes = {
 	"0x02E0000000000079": {
 		name: 'Lucio',
 		color: 'rgb(139, 236, 34)',
+		ultIcon: 'https://firebasestorage.googleapis.com/v0/b/gopherwatch-664c5.appspot.com/o/0x0E60000000000185.png?alt=media&token=dec1c7a8-d318-4491-9001-e4abae41740b'
+	},
+	"0x02E000000000006E": {
+		name: 'Soldier: 76',
+		// fix color
+		color: 'rgb(139, 236, 34)',
+		// fix icon
+		ultIcon: 'https://firebasestorage.googleapis.com/v0/b/gopherwatch-664c5.appspot.com/o/0x0E60000000000185.png?alt=media&token=dec1c7a8-d318-4491-9001-e4abae41740b'
+	},
+	"0x02E0000000000068": {
+		name: "Zarya",
+		// fix color
+		color: 'rgb(139, 236, 34)',
+		// fix icon
+		ultIcon: 'https://firebasestorage.googleapis.com/v0/b/gopherwatch-664c5.appspot.com/o/0x0E60000000000185.png?alt=media&token=dec1c7a8-d318-4491-9001-e4abae41740b'
+	},
+	"0x02E0000000000020": {
+		name: "Zenyatta",
+		// fix color
+		color: 'rgb(139, 236, 34)',
+		// fix icon
 		ultIcon: 'https://firebasestorage.googleapis.com/v0/b/gopherwatch-664c5.appspot.com/o/0x0E60000000000185.png?alt=media&token=dec1c7a8-d318-4491-9001-e4abae41740b'
 	}
 }

@@ -1,8 +1,11 @@
 import React, { PropTypes, Component } from 'react';
 import { connect } from 'react-redux';
-import CharacterList from '../components/CharacterList';
 import { selectCharacter } from './../actions';
+
+import CharacterList from '../components/CharacterList';
 import CharacterFullView from './../components/CharacterFullView';
+import CharacterBar from './../components/CharacterBar';
+import HeroDetails from './../components/HeroDetails';
 
 import Animation from './../animation-components/Animation';
 
@@ -27,6 +30,7 @@ import {
 	SlideDownAndFadeOutAnimation,
 	SlideFromBottomAndFadeInAnimation,
 	SlideFromNearTopAndFadeInAnimation,
+	SlideFromSlightlyAbove,
 
 	SlideUpAndFadeOutAnimation,
 	SlideFromTopAndFadeInAnimation,
@@ -45,6 +49,7 @@ class CharacterSection extends Component {
 		const { isSelected, characters, playerIsSelected, characterKeys, selected, selectCharacter } = this.props;
 		let view = null;
 		let selectedView = null;
+		let characterBar = null;
 
 		if ( !playerIsSelected ) {
 			return null;
@@ -68,16 +73,38 @@ class CharacterSection extends Component {
 			}
 		};
 
+
+
 		if ( isSelected ) {
-			selectedView = (
-				<Animation animations = { animations2 }>
-					<CharacterFullView
-						entryAnimation="entry"
-						exitAnimation="exit"
-						onSelect={ selectCharacter }
-						character={ characters[ isSelected ]}></CharacterFullView>
-				</Animation>
-			)
+
+
+			selectedView = <HeroDetails
+								entryAnimation="entry"
+								exitAnimation="exit"
+								onSelect={ selectCharacter }
+								characters={ characters }
+								character={ characters[ isSelected ]} />
+
+
+			// selectedView = (
+			// 	<Animation animations = { animations2 }>
+			// 			<CharacterFullView
+			// 				entryAnimation="entry"
+			// 				exitAnimation="exit"
+			// 				onSelect={ selectCharacter }
+			// 				character={ characters[ isSelected ]}></CharacterFullView>
+			// 	</Animation>
+			// )
+
+			// characterBar = (
+			// 	<Animation
+			// 		animations={ animations3 }
+			// 		mountName="entry">
+			// 		<CharacterBar
+			// 			characters={ characters}
+			// 			onSelect={ selectCharacter } />
+			// 	</Animation>
+			// )
 		}
 		else {
 			view = (
@@ -89,10 +116,12 @@ class CharacterSection extends Component {
 									selectCharacter={ selectCharacter }></CharacterList>
 				</Animation>
 			)
+
 		}
 
 		return (
 			<div className="content">
+					{ characterBar }
 					{ view }
 					{ selectedView }
 			</div>

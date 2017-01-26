@@ -3,9 +3,6 @@ import React, { Component, PropTypes } from 'react';
 import StatCategory from './StatCategory';
 import Character from './Character';
 
-import { OffenseIcon, DefenseIcon }  from './../svg-components';
-
-
 require( './../../style/character.scss');
 
 
@@ -17,33 +14,28 @@ class CharacterFullView extends Component {
 	}
 
 	back () {
-		const { exitAnimation, players } = this.props;
-		let animation = players[ exitAnimation ]();
-		animation.onfinish = () => {
-			this.props.onSelect( null );
-		};
+		this.props.onSelect( null );
 	}
 
-	componentDidUpdate (prevProps, prevState) {
-		const { entryAnimation, players } = this.props;
-		if ( players[ entryAnimation ] ) {
-			players[ entryAnimation ]();
-		}
-	}
+
 
 	render () {
 
 		let categories = Object.keys( this.props.character.stats );
-		categories = categories.map( cat => <StatCategory key={ cat} stats={ this.props.character.stats[ cat ]}> </StatCategory> )
+		categories = categories.map( cat => <StatCategory
+												name={ cat }
+												key={ cat }
+												stats={ this.props.character.stats[ cat ]}> </StatCategory>
+									)
+
+
+
 
 		return (
 
 				<div className="characterFullView">
+					<span>{ this.props.character.name }</span>
 					<button onClick={ this.back } >Back</button>
-					<div style={{ width: '50px', height: '50px' }}>
-					<OffenseIcon />
-					<DefenseIcon />
-					</div>
 					{ categories }
 			</div>
 		)

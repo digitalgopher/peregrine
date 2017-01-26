@@ -45,3 +45,24 @@ export const SlideFromTopAndFadeInAnimation = {
 		zIndex: -1
 	}
 }
+
+
+export const SlideFromSlightlyAbove = {
+	keyframes: function () {
+		return [
+			{
+				transform: 'translateY(-100px)',
+				offset: 0
+			},
+			{
+				transform: 'translateY(0)',
+				offset: 1
+			}
+		]
+	},
+	initialStyles: {
+		transform: 'translateY(-100px)',
+		transformOrigin: '50%',
+		zIndex: -1
+	}
+}

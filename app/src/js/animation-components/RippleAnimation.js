@@ -57,11 +57,11 @@ class RippleAnimation extends Component {
 
 		let animation = waveContainer.animate(
 			[
-				{ transform: 'scale(0, 0)', opacity: 0.8, offset: 0 },
+				{ transform: 'scale(.2)', opacity: 0.8, offset: 0 },
 				{ transform: 'scale(2)', opacity: 0, offset: 1 }
 			],
 			{
-				duration: 500, //milliseconds
+				duration: 375, //milliseconds
 				easing: 'cubic-bezier(0.4, 0.0, 1, 1)', //'linear', a bezier curve, etc.
 				delay: 0, //milliseconds
 				iterations: 1, //or a number

@@ -4,6 +4,7 @@
 	position: absolute;
 }
 
+// card
 .character-card {
 	color: #4B4F56;
 	display: block;
@@ -60,6 +61,47 @@
 
 	border-top: 1px solid #E9EBEE
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// character abr
+.character-bar {
+	height: 50px;
+	display: flex;
+	flex-wrap: nowrap;
+}
+
+.character-bar-block {
+	height: 50px;
+	width: 50px;
+}
+
+.character-bar-image {
+	width: 100%;
+	height: auto;
+}
+
+
+
+
+
+
+
+
 
 
 .character-tile {

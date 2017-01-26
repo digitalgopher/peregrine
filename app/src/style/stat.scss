@@ -3,27 +3,50 @@
 }
 
 .stat-name {
-	background: white;
 	padding: 0 8px 0 0;
+	color: rgba( 255, 255, 255, .7);
 }
 
 .stat-value {
 	font-family: 'Roboto', sans-serif;
-	font-weight: 100;
 	font-size: 24px;
 	color: white;
 }
 
-.statCategory {
-	margin: 15px;
+.stat-category {
+	background: rgb(28,28,29);
+}
+
+.stat-category-stat-container {
 	display: flex;
 	flex-flow: wrap;
-	background: #1C1C1D;
+	background: rgba( 255, 255, 255, .05);
+}
+
+.stat-category-stat-container > .stat {
+	width: 25%;
+	padding: 10px;
+	box-sizing: border-box;
+}
+
+.stat-category-header {
+	font-size: 24px;
+	color: white;
+}
+
+.stat-category-header > * {
+	display: inline-block;
+}
+
+.stat-category-icon {
+	height: 20px;
+	width: 20px;
+	fill: #00c3ff;
+	padding-left: 10px;
 }
 
 
 .stat-small-value {
-	// font-weight: 100;
 	font-size: 24px;
 	display: block;
 	user-select: none;

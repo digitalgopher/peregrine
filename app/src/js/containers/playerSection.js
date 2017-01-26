@@ -7,7 +7,6 @@ import SearchBox from './../containers/SearchBox';
 import CharacterFullView from './../components/CharacterFullView';
 
 import Animation from './../animation-components/Animation';
-
 import RippleAnimation from './../animation-components/RippleAnimation';
 
 
@@ -36,7 +35,7 @@ class PlayerSection extends Component {
 	}
 
 	render () {
-		const { player, playerIsSelected, stats, heroMain, selectedCharacter } = this.props;
+		const { player, playerIsSelected, stats, heroMain, selectedCharacter, characters } = this.props;
 
 		let playerView = null;
 		let searchBoxView = null;
@@ -46,7 +45,9 @@ class PlayerSection extends Component {
 			let selectedCharacterX = selectedCharacter || heroMain;
 
 			playerView =  (
+				<div>
 					<Player player={ player } stats={ stats } heroMain={ selectedCharacterX }/>
+				</div>
 			)
 		}
 		else {
@@ -89,6 +90,7 @@ const mapStateToProps = ( state, ownProps ) => ({
 	playerIsSelected: state.player.info !== null,
 	stats: state.player.generalStats || {},
 
+	characters: state.characters.byKey,
 	heroMain: state.characters.mostPlayed,
 	selectedCharacter: getCharacter( state.characters, state.characters.selected )
 });

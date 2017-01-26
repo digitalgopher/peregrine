@@ -6,7 +6,7 @@ class OffenseIcon extends Component {
 	}
 	render () {
 		return (
-			<svg fill="green" viewBox="0 0 32 32" role="presentation">
+			<svg viewBox="0 0 32 32" role="presentation">
 			<title>Offense</title>
 			<g>
 				<rect x="2.1" y="28.1" width="7.1" height="3.9"></rect>

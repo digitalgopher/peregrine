@@ -35,7 +35,6 @@ class CharacterFullView extends Component {
 
 				<div className="characterFullView">
 					<span>{ this.props.character.name }</span>
-					<button onClick={ this.back } >Back</button>
 					{ categories }
 			</div>
 		)

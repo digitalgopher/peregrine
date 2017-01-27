@@ -79,20 +79,34 @@
 
 
 // character abr
+.character-bar-container {
+	overflow: hidden;
+}
 .character-bar {
 	height: 50px;
 	display: flex;
 	flex-wrap: nowrap;
+	justify-content: center;
 }
 
 .character-bar-block {
+	display: flex;
+	justify-content: center;
+	align-items: center;
 	height: 50px;
 	width: 50px;
+	transform: skewX( -10deg )
 }
 
 .character-bar-image {
-	width: 100%;
+	width: 80%;
 	height: auto;
+}
+
+.character-bar-list {
+	margin: 0;
+	padding: 0;
+	display: flex;
 }
 
 

@@ -85,26 +85,6 @@ class CharacterSection extends Component {
 								characters={ characters }
 								character={ characters[ isSelected ]} />
 
-
-			// selectedView = (
-			// 	<Animation animations = { animations2 }>
-			// 			<CharacterFullView
-			// 				entryAnimation="entry"
-			// 				exitAnimation="exit"
-			// 				onSelect={ selectCharacter }
-			// 				character={ characters[ isSelected ]}></CharacterFullView>
-			// 	</Animation>
-			// )
-
-			// characterBar = (
-			// 	<Animation
-			// 		animations={ animations3 }
-			// 		mountName="entry">
-			// 		<CharacterBar
-			// 			characters={ characters}
-			// 			onSelect={ selectCharacter } />
-			// 	</Animation>
-			// )
 		}
 		else {
 			view = (

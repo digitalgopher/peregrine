@@ -39,7 +39,7 @@ class Animation extends Component {
 		});
 
 		let player = node.animate(
-			animation.keyframes(),
+			animation.keyframes( node ),
 			{
 				duration: timing.duration, //milliseconds
 				easing: timing.easing, //'linear', a bezier curve, etc.

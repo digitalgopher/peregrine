@@ -3,7 +3,7 @@ import {
 	SELECT_CHARACTER,
 	PLAYER_SEARCH_SUCCESS } from './../actions';
 
-
+const ALL_CHARACTERS_KEY = '0x02E00000FFFFFFFF';
 const initialState = {
 	keys: [],
 	byKey: {},
@@ -16,9 +16,16 @@ export default function characters ( state = initialState, action ) {
 		case CLEAR_PLAYER:
 			return Object.assign({}, initialState.characters );
 		case SELECT_CHARACTER:
-			return Object.assign({}, state, {
-				selected: action.key === state.selected ? null : action.key
-			});
+			if ( action.key === state.selected || action.key === ALL_CHARACTERS_KEY ) {
+				return Object.assign( {}, state, {
+					selected: null
+				})
+			}
+
+			return Object.assign( {}, state, {
+					selected: action.key
+			})
+
 		case PLAYER_SEARCH_SUCCESS:
 			return Object.assign( {}, state, {
 				keys: Object.keys( action.player.compStats ),

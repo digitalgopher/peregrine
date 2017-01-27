@@ -5,16 +5,21 @@ import CharacterFullView from './CharacterFullView';
 import CharacterBar from './CharacterBar';
 
 import Animation from './../animation-components/Animation';
-import AnimationComposer from './../animation-components/AnimationComposer';
 
 import {
 	SlideFromNearTopAndFadeInAnimation,
 	SlideFromSlightlyAbove,
+	SlideDownAndScaleDownAnimation,
 
 	SlideUpAnimation,
 
+	SlideOffScreenLeft,
+	SlideFromRightOffScreen,
+
 	SlideLeftAnimation,
 	SlideFromRightAnimation,
+
+	SlideDownAnimation,
 
 	FadeOutAnimation,
 
@@ -40,7 +45,7 @@ class HeroDetails extends Component {
 	}
 
 	onSelection ( key ) {
-		if ( key == null || key === this.props.character.value ) {
+		if (key === '0x02E00000FFFFFFFF' || key == null || key === this.props.character.value ) {
 			this.animationsComplete = 0;
 			this.setState({
 				characterBar: {
@@ -60,32 +65,37 @@ class HeroDetails extends Component {
 		else {
 
 
-			this.setState({
-				fullView: {
-					playNow: {
-						name: 'swapout',
-						onfinish: () => {
-							this.props.onSelect( key )
-						}
-					}
-				}
-			})
 
+
+
+			this.props.onSelect( key )
 			// this.props.onSelect( key );
 		}
 
 	}
 
-	componentDidUpdate ( prevProps, prevState ) {
-		if (prevProps.character.value !== this.props.character.value ) {
-			this.setState({
-				fullView: {
-					playNow: {
-						name: 'swapin',
-					}
+
+	componentWillReceiveProps (nextProps) {
+		this.setState({
+			fullView: {
+				playNow: {
+					name: 'swapout'
 				}
-			})
-		}
+			}
+		})
+	}
+
+
+	componentDidUpdate ( nextProps ) {
+	// if (nextProps.character.value !== this.props.character.value ) {
+	// 		this.setState({
+	// 			fullView: {
+	// 				playNow: {
+	// 					name: 'swapin',
+	// 				}
+	// 			}
+	// 		})
+	// 	}
 	}
 
 	childAnimationComplete () {
@@ -110,10 +120,12 @@ class HeroDetails extends Component {
 				easing: AccelerationCurve
 			},
 			swapout: {
-				animation: SlideLeftAnimation
+				animation: SlideOffScreenLeft,
+				easing: AccelerationCurve
 			},
 			swapin: {
-				animation: SlideFromRightAnimation
+				animation: SlideFromRightOffScreen,
+				easing: DecelerationCurve
 			}
 
 		};
@@ -129,15 +141,17 @@ class HeroDetails extends Component {
 		}
 
 		return (
-			< div >
-				<Animation
-					animations={ animations3 }
-					mountName="entry"
-					playNow={ this.state.characterBar.playNow }>
-					<CharacterBar
-						characters={ characters }
-						onSelect={ this.onSelection } />
-				</Animation>
+			< div className="hero-details">
+				<div className="character-bar-container">
+					<Animation
+						animations={ animations3 }
+						mountName="entry"
+						playNow={ this.state.characterBar.playNow }>
+						<CharacterBar
+							characters={ characters }
+							onSelect={ this.onSelection } />
+					</Animation>
+				</div>
 
 				<Animation
 					animations={ animations2 }

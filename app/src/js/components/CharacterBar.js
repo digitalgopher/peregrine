@@ -20,18 +20,19 @@ class CharacterBar extends Component {
 						className="character-bar-image"
 						src={Heroes[val].icon} />
 			}
-			return <div
+			return <li
 					key={ val }
 					onClick={ () => { this.props.onSelect( val ) }}
 					className="character-bar-block"
 					style={style}>
 						{ img }
-					</div>
+					</li>
 		});
 
 		return <div className="character-bar">
-			{characterBlock}
-
+			<ul className="character-bar-list">
+				{characterBlock}
+			</ul>
 		</div>
 
 	}

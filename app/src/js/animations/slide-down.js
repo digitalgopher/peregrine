@@ -39,3 +39,30 @@ export const SlideDownAndFadeOutAnimation = {
 		transformOrigin: '50%'
 	}
 }
+
+export const SlideDownAndScaleDownAnimation = {
+		keyframes: function () {
+		return [
+			{
+				transform: 'translateY(0) scaleX( 1 )',
+				opacity: 1,
+				offset: 0
+			},
+			{
+				opacity: .2,
+				offset: 0.3
+			},
+			{
+				transform: 'translateY(100px) scaleX( .9 )',
+				opacity: .2,
+				offset: 1
+			}
+		]
+	},
+
+	initialStyles: {
+		transform: 'translateY( 0 )',
+		opacity: 1,
+		transformOrigin: '50%'
+	}
+}

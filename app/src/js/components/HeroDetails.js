@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 
+import AnimationGroup from './../animation-components/AnimationGroup';
 
 import CharacterFullView from './CharacterFullView';
 import CharacterBar from './CharacterBar';
@@ -15,6 +16,7 @@ import {
 
 	SlideOffScreenLeft,
 	SlideFromRightOffScreen,
+
 
 	SlideLeftAnimation,
 	SlideFromRightAnimation,
@@ -64,43 +66,15 @@ class HeroDetails extends Component {
 		}
 		else {
 
-
-
-
-
 			this.props.onSelect( key )
-			// this.props.onSelect( key );
 		}
 
 	}
 
 
-	componentWillReceiveProps (nextProps) {
-		this.setState({
-			fullView: {
-				playNow: {
-					name: 'swapout'
-				}
-			}
-		})
-	}
-
-
-	componentDidUpdate ( nextProps ) {
-	// if (nextProps.character.value !== this.props.character.value ) {
-	// 		this.setState({
-	// 			fullView: {
-	// 				playNow: {
-	// 					name: 'swapin',
-	// 				}
-	// 			}
-	// 		})
-	// 	}
-	}
-
 	childAnimationComplete () {
 		this.animationsComplete++;
-		if (this.animationsComplete === 2) {
+		if (this.animationsComplete === 1) {
 			this.props.onSelect( this.key );
 		}
 	}
@@ -111,21 +85,18 @@ class HeroDetails extends Component {
 
 
 		let animations2 = {
-			entry: {
+			appear: {
 				animation: SlideFromNearTopAndFadeInAnimation,
 				easing: DecelerationCurve
 			},
-			exit: {
+			leave: {
 				animation: FadeOutAnimation,
 				easing: AccelerationCurve
 			},
-			swapout: {
-				animation: SlideOffScreenLeft,
-				easing: AccelerationCurve
-			},
-			swapin: {
-				animation: SlideFromRightOffScreen,
-				easing: DecelerationCurve
+			enter: {
+				animation: SlideLeftAnimation,
+				easing: AccelerationCurve,
+				duration: 175
 			}
 
 		};
@@ -148,20 +119,20 @@ class HeroDetails extends Component {
 						mountName="entry"
 						playNow={ this.state.characterBar.playNow }>
 						<CharacterBar
+							selected={ this.props.character.value }
 							characters={ characters }
 							onSelect={ this.onSelection } />
 					</Animation>
 				</div>
 
-				<Animation
-					animations={ animations2 }
-					mountName="entry"
-					playNow={ this.state.fullView.playNow }>
+				<AnimationGroup
+					appear={ animations2.appear }
+					enter={ animations2.enter }
+					leave={ animations2.leave }>
 					<CharacterFullView
-						exitAnimation="exit"
 						onSelect={ this.onSelection }
 						character={ character } />
-					</Animation>
+				</AnimationGroup>
 			</div>
 		)
 

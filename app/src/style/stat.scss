@@ -4,23 +4,24 @@
 
 .stat-name {
 	padding: 0 8px 0 0;
-	color: rgba( 255, 255, 255, .7);
 }
 
 .stat-value {
 	font-family: 'Roboto', sans-serif;
 	font-size: 24px;
-	color: white;
 }
 
 .stat-category {
 	background: rgb(28,28,29);
+
 }
 
 .stat-category-stat-container {
 	display: flex;
 	flex-flow: wrap;
-	background: rgba( 255, 255, 255, .05);
+	background: rgba( 255, 255, 255, 1);
+	color: rgb(28,28,29);
+	margin: 5px 0;
 }
 
 .stat-category-stat-container > .stat {

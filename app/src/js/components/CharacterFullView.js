@@ -33,7 +33,7 @@ class CharacterFullView extends Component {
 
 		return (
 
-				<div className="characterFullView">
+				<div className="characterFullView" ref={ node => this.node = node } >
 					<span>{ this.props.character.name }</span>
 					{ categories }
 			</div>

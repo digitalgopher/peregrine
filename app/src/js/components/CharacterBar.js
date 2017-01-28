@@ -12,8 +12,16 @@ class CharacterBar extends Component {
 		const { characters } = this.props;
 		let characterBlock = Object.keys( characters ).map( val => {
 			let style = {
-				background: Heroes[ val ].color
+				background: Heroes[ val ].color,
+				zIndex: ''
 			}
+			let className = 'character-bar-block';
+			if (  this.props.selected === val ) {
+				style.zIndex=  99;
+				className += ' character-bar-block-is-selected';
+			}
+
+
 			let img = null;
 			if ( Heroes[val].icon ) {
 				img = <img
@@ -23,7 +31,7 @@ class CharacterBar extends Component {
 			return <li
 					key={ val }
 					onClick={ () => { this.props.onSelect( val ) }}
-					className="character-bar-block"
+					className={className}
 					style={style}>
 						{ img }
 					</li>

@@ -18,6 +18,37 @@ class Animation extends Component {
 		}
 	}
 
+
+
+	// for when it's a child of ReactTransitionGroup
+	componentWillAppear ( callback ) {
+		console.log( 'appear' );
+		callback();
+	}
+
+	componentWillLeave ( callback ) {
+		let player = this.state.players[ 'swapout' ]();
+		player.onfinish = () => callback();
+		// callback();
+	}
+
+	componentWillEnter ( callback ) {
+		let player = this.state.players[ 'swapin' ]();
+		player.onfinish = () => callback();
+		// callback();
+	}
+
+
+
+
+
+
+
+
+
+
+
+
 	_clearStyles ( animation ) {
 		Object.keys( animation.initialStyles ).forEach( name => {
 			this.refNode.style[ name ] = animation.initialStyles[ name ];

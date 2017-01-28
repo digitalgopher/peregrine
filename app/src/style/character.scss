@@ -81,6 +81,7 @@
 // character abr
 .character-bar-container {
 	overflow: hidden;
+	padding-bottom: 5px;
 }
 .character-bar {
 	height: 50px;
@@ -95,7 +96,16 @@
 	align-items: center;
 	height: 50px;
 	width: 50px;
+	transition: transform 100ms ease-in-out,
+				box-shadow 100ms ease-in-out;
 	transform: skewX( -10deg )
+}
+
+.character-bar-block:hover {
+	transform: scale( 1.05 ) skewX( -10deg );
+	box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
+				0 1px 5px 0 rgba(0, 0, 0, 0.12),
+				0 3px 1px -2px rgba(0, 0, 0, 0.2);
 }
 
 .character-bar-image {
@@ -109,6 +119,12 @@
 	display: flex;
 }
 
+.character-bar-block-is-selected {
+	transform: scale( 1.1 ) skewX( -10deg );
+	box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
+                  0 1px 5px 0 rgba(0, 0, 0, 0.12),
+                  0 3px 1px -2px rgba(0, 0, 0, 0.2);
+}
 
 
 

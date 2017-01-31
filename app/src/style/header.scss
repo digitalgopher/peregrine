@@ -1,22 +1,27 @@
-.header {
-	height: 768px;
+.gopher-header {
+	z-index: 3;
+	overflow: hidden;
 	position: relative;
+
 }
 
+.gopher-header-inner {
+	height: 200px;
+	transition: height 150ms ease-in-out;
+}
 
-.header > .background {
-	position: absolute;
+.gopher-header-bg {
 	background: #232A2D;
+	position: absolute;
 	width: 100%;
 	height: 100%;
-	color: white;
-
-	border: 1px solid #e0e0e0;
-	margin: 0;
 }
-.header > .intro {
-	display: flex;
-	text-align: center;
-	justify-content: center;
-	font-size: 32px;
+
+.gopher-header-bg-color-splash {
+	height: 6px;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background-image: linear-gradient(150deg,#FF6F00 15%,#ffab00 70%,#ffca28 94%);
 }

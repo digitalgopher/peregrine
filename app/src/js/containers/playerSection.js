@@ -58,10 +58,6 @@ class PlayerSection extends Component {
 
 		return (
 			<div className="playerSection">
-				<div className="player-bg">
-
-					<div className="player-bg-color-splash"></div>
-				</div>
 				<RippleAnimation color="white" />
 				<div className="content">
 						{ playerView }

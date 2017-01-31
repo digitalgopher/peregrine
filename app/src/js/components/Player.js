@@ -13,6 +13,7 @@ class Player extends Component {
 		const { heroMain } = this.props;
 		const { GamesPlayed, GamesWon } = this.props.stats.Game;
 		let winLossRecord = `${GamesWon.value} - ${GamesPlayed.value-GamesWon.value} - 0 / ${GamesPlayed.value}`;
+
 		return (
 			<div className="player">
 				<div className="player-info">

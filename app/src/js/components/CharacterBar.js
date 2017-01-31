@@ -37,6 +37,18 @@ class CharacterBar extends Component {
 					</li>
 		});
 
+		// test. create select box
+		if ( matchMedia("(max-width: 500px)").matches ) {
+
+			let stuff = Object.keys( characters ).map( val => <option value={ characters[val].value }> { characters[val].name}  </option> )
+			return <div className="character-bar">
+				<select onChange={ (e) => this.props.onSelect( e.target.value )}>
+					{ stuff }
+				</select>
+			</div>
+		}
+
+
 		return <div className="character-bar">
 			<ul className="character-bar-list">
 				{characterBlock}

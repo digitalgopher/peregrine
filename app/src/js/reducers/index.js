@@ -20,7 +20,6 @@ const initialState = {
 
 	ui: {
 		title: 'GopherWatch',
-		selectedCharacter: null,
 		mediaQuery: 'LARGE', //LARGE, MEDIUM SMALL
 	}
 }

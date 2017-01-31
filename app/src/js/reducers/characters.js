@@ -14,7 +14,7 @@ const initialState = {
 export default function characters ( state = initialState, action ) {
 	switch ( action.type ) {
 		case CLEAR_PLAYER:
-			return Object.assign({}, initialState.characters );
+			return Object.assign({}, initialState );
 		case SELECT_CHARACTER:
 			if ( action.key === state.selected || action.key === ALL_CHARACTERS_KEY ) {
 				return Object.assign( {}, state, {

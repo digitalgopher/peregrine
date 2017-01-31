@@ -10,18 +10,18 @@ class Player extends Component {
 	}
 
 	render () {
-		const { heroMain } = this.props;
+		const { heroMain, clearPlayer } = this.props;
 		const { GamesPlayed, GamesWon } = this.props.stats.Game;
 		let winLossRecord = `${GamesWon.value} - ${GamesPlayed.value-GamesWon.value} - 0 / ${GamesPlayed.value}`;
 
 		return (
 			<div className="player">
-				<div className="player-info">
+				<div className="player-gridItem player-info">
 					<div className="player-avatar">
-						<img src={ this.props.player.info.avatarUrl } />
+						<img onClick={ clearPlayer } src={ this.props.player.info.avatarUrl } />
 					</div>
 				</div>
-				<div className="player-stats">
+				<div className="player-gridItem player-stats">
 					<PlayerDescription heroMain={heroMain} player={this.props.player} stats={ this.props.stats }/>
 				</div>
 			</div>

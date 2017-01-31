@@ -11,15 +11,15 @@
 }
 
 
-
 .character-list > * {
-	width: 25%;
-	padding: 20px;
+	width: 20%;
+	padding: 15px;
 	box-sizing: border-box;
 }
 
 @media (max-width: 500px) {
 	.character-list > * {
 		width: 100%;
+		padding: 0 0 5px 0;
 	}
 }

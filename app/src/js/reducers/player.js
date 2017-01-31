@@ -12,7 +12,7 @@ const initialState = {
 export default function player ( state = initialState, action ) {
 	switch (action.type ) {
 		case CLEAR_PLAYER:
-			return {};
+			return initialState;
 		case PLAYER_SEARCH_SUCCESS:
 			return Object.assign( {}, state, {
 				name: action.name,

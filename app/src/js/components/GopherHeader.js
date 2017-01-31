@@ -7,14 +7,20 @@ class GopherHeader extends Component {
 
 	render () {
 
-		const cssName = `gopher-header-${this.props.size}`;
+
+
+		let cssName = 'gopherHeader';
+
+		if ( !this.props.playerIsSelected ) {
+			cssName = 'gopherHeader-is-search';
+		}
 
 		let style = {
 			// height: `${this.props.offset}px`
 		}
 
 		return (
-			<div className="gopher-header" style={ style }>
+			<div className={ cssName }>
 				<div className="gopher-header-inner">
 					<div className="gopher-header-bg"></div>
 					<div className="gopher-header-bg-color-splash"></div>

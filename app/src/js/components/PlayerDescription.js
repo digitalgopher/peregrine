@@ -21,20 +21,20 @@ class PlayerDescription extends Component {
 		 }
 
 		highlightStyle = { color: hero.color };
-		return null;
+		// return null;
 		return (
-			<p className="player-description">
-				<span style={highlightStyle} className="player-description-highlight">{ player.name }</span>
+			<p className="playerDescription">
+				<span style={highlightStyle} className="playerDescription-highlight">{ player.name }</span>
 				<span> is a </span>
-				<span style={highlightStyle} className="player-description-highlight">{ hero.name }</span>
+				<span style={highlightStyle} className="playerDescription-highlight">{ hero.name }</span>
 				<span> main. With an SR of </span>
-				<span style={highlightStyle} className="player-description-highlight">{ player.info.SR }</span>
+				<span style={highlightStyle} className="playerDescription-highlight">{ player.info.SR }</span>
 				<span>. They win </span>
-				<span style={highlightStyle} className="player-description-highlight">{ winPercent }%</span>
+				<span style={highlightStyle} className="playerDescription-highlight">{ winPercent }%</span>
 				<span> of their games in total, and </span>
-				<span style={highlightStyle} className="player-description-highlight">{ winPercentHero }%</span>
+				<span style={highlightStyle} className="playerDescription-highlight">{ winPercentHero }%</span>
 				<span> when they play as </span>
-				<span style={highlightStyle} className="player-description-highlight">{ hero.name }</span>
+				<span style={highlightStyle} className="playerDescription-highlight">{ hero.name }</span>
 			</p>
 		)
 	}

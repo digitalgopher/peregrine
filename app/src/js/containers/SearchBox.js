@@ -31,15 +31,17 @@ class SearchBox extends Component {
 	}
 
 	render () {
+
 		return (
-			<div>
-				<input type="text"
-					onChange={this.handleChange}
-					value={this.state.value}
-					placeholder="search for a player" />
-				<button onClick={ this.search }>Search</button>
-				<button onClick={ this.update }> Update Player </button>
-				<button onClick={ this.props.clearPlayer }>Clear</button>
+			<div className="searchBox">
+					<input type="text"
+						onChange={this.handleChange}
+						value={this.state.value}
+						placeholder="search for a player" />
+					<button className="primary" onClick={ this.search }>Search</button>
+					<button disabled className="secondary" onClick={ this.update }> Update Player </button>
+					<button className="secondary" onClick={ this.props.clearPlayer }>Clear</button>
+
 			</div>
 		)
 	}

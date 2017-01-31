@@ -25,6 +25,8 @@ class CharacterCard extends Component {
 	render () {
 		const { hero, character } = this.props;
 
+		let portrait = null;
+
 		let style = Object.assign({}, this.props.style  );
 
 		if (this.props.isSelected) {
@@ -37,20 +39,23 @@ class CharacterCard extends Component {
 
 		}
 
-		let elimsName = "Eliminations";
-		let elims = 0;
-		if (character.stats.Combat.Eliminations) {
-			elims = character.stats.Combat.Eliminations.value;
+		if ( hero.portrait ) {
+			portrait = <div className="character-card-potrait">
+				<img src={ hero.portrait } />
+			</div>
 		}
 
+		let elimsName = "Eliminations";
+		let elims = 0;
+		if (character.stats.Combat && character.stats.Combat.Eliminations) {
+			elims = character.stats.Combat.Eliminations.value;
+		}
 
 		return (
 			<div  className="character-card" style={style}>
 				<div className="character-card-inner">
-					<div className="character-card-name">{ character.name }</div>
-					<div className="character-card-icon">
 
-					</div>
+					<div className="character-card-name">{ character.name }</div>
 					<div className="character-card-stats">
 						<StatSmall
 							name={ elimsName }

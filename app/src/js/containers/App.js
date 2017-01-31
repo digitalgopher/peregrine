@@ -37,9 +37,9 @@ class App extends Component {
 		// this.scrollStart = this.contentNode.offsetHeight;
 	}
 
-	shouldComponentUpdate (nextProps, nextState) {
-		return nextState.headerSize !== this.state.headerSize;
-	}
+	// shouldComponentUpdate (nextProps, nextState) {
+	// 	return nextState.headerSize !== this.state.headerSize;
+	// }
 
 	handleScroll (e) {
 		this.setState({
@@ -50,17 +50,18 @@ class App extends Component {
 
 	render () {
 
+		let { playerIsSelected } = this.props;
+
 
 		return (
 			<div className="app">
 				<div className="app-main">
 
 					<GopherHeader
+						playerIsSelected={ playerIsSelected }
 						offset={ this.state.scrollOffset }
 						size={ this.state.headerSize }>
-						<section id="player">
-							<PlayerSection />
-						</section>
+							<PlayerSection size={ this.state.headerSize } />
 					</GopherHeader>
 
 					<div className="app-content-container" ref={ node => this.contentNode = node  } >
@@ -94,6 +95,7 @@ class App extends Component {
 
 const mapStateToProps = (state, ownProps) => ({
 	title: state.ui.title,
+	playerIsSelected: state.player.info ? true : false,
 });
 
 export default connect(mapStateToProps, {

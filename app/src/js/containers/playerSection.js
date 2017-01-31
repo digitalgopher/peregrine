@@ -12,6 +12,8 @@ import RippleAnimation from './../animation-components/RippleAnimation';
 
 import { getCharacter } from './../reducers/characters';
 
+import { clearPlayer } from './../actions';
+
 import {
 	FadeInAnimation,
 	ScaleDownAnimation,
@@ -35,20 +37,25 @@ class PlayerSection extends Component {
 	}
 
 	render () {
-		const { player, playerIsSelected, stats, heroMain, selectedCharacter, characters } = this.props;
+		const { clearPlayer, player, playerIsSelected, stats, heroMain, selectedCharacter, characters } = this.props;
 
 		let playerView = null;
 		let searchBoxView = null;
+		let ripple = null;
 
 		if ( playerIsSelected ) {
 
 			let selectedCharacterX = selectedCharacter || heroMain;
 
 			playerView =  (
-				<div>
-					<Player player={ player } stats={ stats } heroMain={ selectedCharacterX }/>
-				</div>
+					<Player
+						clearPlayer={ clearPlayer }
+						player={ player }
+						stats={ stats }
+						heroMain={ selectedCharacterX }/>
 			)
+
+			ripple = <RippleAnimation color="white" />;
 		}
 		else {
 			searchBoxView = (
@@ -58,7 +65,7 @@ class PlayerSection extends Component {
 
 		return (
 			<div className="playerSection">
-				<RippleAnimation color="white" />
+				{ ripple }
 				<div className="content">
 						{ playerView }
 						{ searchBoxView }
@@ -88,6 +95,7 @@ const mapStateToProps = ( state, ownProps ) => ({
 
 	characters: state.characters.byKey,
 	heroMain: state.characters.mostPlayed,
+	// selectedCharacter: state.characters.selected,
 	selectedCharacter: getCharacter( state.characters, state.characters.selected )
 });
 
@@ -95,4 +103,4 @@ const mapStateToProps = ( state, ownProps ) => ({
 
 
 
-export default connect( mapStateToProps, { } )( PlayerSection );
+export default connect( mapStateToProps, { clearPlayer } )( PlayerSection );

@@ -30,13 +30,17 @@
 	.character-card {
 		height: 100px;
 	}
+
+	.character-card-name {
+		padding-left: 5px;
+	}
 }
 
 .character-card-inner {
 	display: flex;
 	height: 100%;
 	flex-direction: column;
-	justify-content: space-between;
+	// justify-content: space-between;
 }
 
 .character-card-name {
@@ -45,8 +49,15 @@
 	font-style: italic;
 	font-size: 30px;
 	text-align: left;
-	margin-bottom: 7px;
+	// margin-bottom: 7px;
 	white-space: nowrap;
+	// overflow: hidden;
+	background: #2C3A4B;
+	color: rgba( 255, 255, 255, 1 );
+}
+
+.character-card-potrait {
+	// height: 100%;
 	overflow: hidden;
 }
 
@@ -84,21 +95,15 @@
 	padding-bottom: 5px;
 }
 .character-bar {
-	height: 50px;
-	display: flex;
-	flex-wrap: nowrap;
-	justify-content: center;
+	height: 60px;
 }
 
 .character-bar-block {
-	display: flex;
-	justify-content: center;
-	align-items: center;
+	flex-basis: 50px;
 	height: 50px;
-	width: 50px;
+	transform: skewX( -10deg );
 	transition: transform 100ms ease-in-out,
 				box-shadow 100ms ease-in-out;
-	transform: skewX( -10deg )
 }
 
 .character-bar-block:hover {
@@ -117,6 +122,9 @@
 	margin: 0;
 	padding: 0;
 	display: flex;
+	list-style: none;
+	flex-wrap: nowrap;
+	justify-content: center;
 }
 
 .character-bar-block-is-selected {
@@ -127,11 +135,16 @@
 }
 
 
-
-
-
-
-
+.character-bar select {
+	background: #2C3A4B;
+	height: 45px;
+	font-family: 'Roboto Condensed', sans-serif;
+	font-weight: 700;
+	font-style: italic;
+	font-size: 30px;
+	color: white;
+	width: 100%;
+}
 
 
 .character-tile {

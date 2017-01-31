@@ -10,10 +10,11 @@ export const Heroes = {
 	},
 	"0x02E0000000000005": {
 		name: "Hanzo",
-		color: '',
+		color: 'rgb(147, 136, 72)',
 	},
 	"0x02E0000000000003": {
 		name: 'Tracer',
+		portrait: 'https://firebasestorage.googleapis.com/v0/b/gopherwatch-664c5.appspot.com/o/tracer-portrait.png?alt=media&token=7fe29909-0081-4bd9-b6ea-7eea6020e35a',
 		color: 'rgb(248, 145, 27)',
 		icon: 'https://firebasestorage.googleapis.com/v0/b/gopherwatch-664c5.appspot.com/o/tracer-icon.png?alt=media&token=3cfbcfe7-83ff-4be3-85ed-f4a548eb4a0c',
 		abilities: {
@@ -68,30 +69,63 @@ export const Heroes = {
 	},
 	"0x02E000000000006E": {
 		name: 'Soldier: 76',
-		// fix color
-		color: 'rgb(139, 236, 34)',
-		// fix icon
+		color: 'rgb(88, 112, 182)',
 		ultIcon: 'https://firebasestorage.googleapis.com/v0/b/gopherwatch-664c5.appspot.com/o/0x0E60000000000185.png?alt=media&token=dec1c7a8-d318-4491-9001-e4abae41740b'
 	},
 	"0x02E0000000000068": {
 		name: "Zarya",
-		// fix color
-		color: 'rgb(139, 236, 34)',
-		// fix icon
+		color: 'rgb(245, 113, 168)',
 		ultIcon: 'https://firebasestorage.googleapis.com/v0/b/gopherwatch-664c5.appspot.com/o/0x0E60000000000185.png?alt=media&token=dec1c7a8-d318-4491-9001-e4abae41740b'
 	},
 	"0x02E0000000000020": {
 		name: "Zenyatta",
-		// fix color
-		color: 'rgb(139, 236, 34)',
-		// fix icon
+		color: 'rgb(199, 156, 0)',
 		ultIcon: 'https://firebasestorage.googleapis.com/v0/b/gopherwatch-664c5.appspot.com/o/0x0E60000000000185.png?alt=media&token=dec1c7a8-d318-4491-9001-e4abae41740b'
-	}
+	},
+	"0x02E000000000013B": {
+		name: "Ana",
+		color: 'rgb(204, 194, 174)',
+		ultIcon: 'https://firebasestorage.googleapis.com/v0/b/gopherwatch-664c5.appspot.com/o/0x0E60000000000185.png?alt=media&token=dec1c7a8-d318-4491-9001-e4abae41740b'
+	},
+	"0x02E0000000000006": {
+		name: "Torbjörn",
+		color: 'rgb(255, 98, 0)',
+		ultIcon: 'https://firebasestorage.googleapis.com/v0/b/gopherwatch-664c5.appspot.com/o/0x0E60000000000174.png?alt=media&token=b329b9ea-72ba-4358-80f9-05f52aeb3e78'
+	},
+	"0x02E0000000000008": {
+		name: "Pharah",
+		color: 'rgb(27, 101, 198)',
+		ultIcon: 'https://firebasestorage.googleapis.com/v0/b/gopherwatch-664c5.appspot.com/o/0x0E60000000000174.png?alt=media&token=b329b9ea-72ba-4358-80f9-05f52aeb3e78'
+	},
+	"0x02E0000000000009": {
+		name: "Winston",
+		color: 'rgb(76, 80, 92)',
+		ultIcon: 'https://firebasestorage.googleapis.com/v0/b/gopherwatch-664c5.appspot.com/o/0x0E60000000000174.png?alt=media&token=b329b9ea-72ba-4358-80f9-05f52aeb3e78'
+	},
+	"0x02E000000000000A": {
+		name: "Widowmaker",
+		color: 'rgb(111, 111, 174)',
+		ultIcon: 'https://firebasestorage.googleapis.com/v0/b/gopherwatch-664c5.appspot.com/o/0x0E60000000000174.png?alt=media&token=b329b9ea-72ba-4358-80f9-05f52aeb3e78'
+	},
+	"0x02E0000000000015": {
+		name: "Bastion",
+		color: 'rgb(110, 153, 77)',
+		ultIcon: 'https://firebasestorage.googleapis.com/v0/b/gopherwatch-664c5.appspot.com/o/0x0E60000000000174.png?alt=media&token=b329b9ea-72ba-4358-80f9-05f52aeb3e78'
+	},
+	"0x02E0000000000040": {
+		name: "Roadhog",
+		color: 'rgb(193, 148, 119)',
+		ultIcon: 'https://firebasestorage.googleapis.com/v0/b/gopherwatch-664c5.appspot.com/o/0x0E60000000000174.png?alt=media&token=b329b9ea-72ba-4358-80f9-05f52aeb3e78'
+	},
+	"0x02E0000000000042": {
+		name: "McCree",
+		color: 'rgb(141, 57, 57)',
+		ultIcon: 'https://firebasestorage.googleapis.com/v0/b/gopherwatch-664c5.appspot.com/o/0x0E60000000000174.png?alt=media&token=b329b9ea-72ba-4358-80f9-05f52aeb3e78'
+	},
+
+	"0x02E0000000000065": {
+		name: "Junkrat",
+		color: 'rgb(211, 147, 8)',
+		ultIcon: 'https://firebasestorage.googleapis.com/v0/b/gopherwatch-664c5.appspot.com/o/0x0E60000000000174.png?alt=media&token=b329b9ea-72ba-4358-80f9-05f52aeb3e78'
+	},
 }
-
-
-// const abilities = {
-// 	pulsePistols:
-// 	rewind:
-// 	pulseBomb:
-// }

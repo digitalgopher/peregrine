@@ -3,6 +3,8 @@ import React, { Component, PropTypes } from 'react';
 import StatCategory from './StatCategory';
 import Character from './Character';
 
+import HeroStats from './HeroStats';
+
 require( './../../style/character.scss');
 
 
@@ -20,7 +22,7 @@ class CharacterFullView extends Component {
 
 
 	render () {
-
+		const { character } = this.props;
 		let categories = Object.keys( this.props.character.stats );
 		categories = categories.map( cat => <StatCategory
 												name={ cat }
@@ -35,7 +37,7 @@ class CharacterFullView extends Component {
 
 				<div className="characterFullView" ref={ node => this.node = node } >
 					<span>{ this.props.character.name }</span>
-					{ categories }
+					<HeroStats heroValue={ character.value} stats={ character.stats } />
 			</div>
 		)
 	}

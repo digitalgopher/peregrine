@@ -58,3 +58,105 @@
 	display: block;
 	user-select: none;
 }
+
+
+
+.heroStats {
+	width: 100%;
+	display: flex;
+}
+
+.heroStats-card {
+	margin: 10px 0;
+	padding: 15px;
+	background: white;
+	box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
+				0 1px 5px 0 rgba(0, 0, 0, 0.12),
+				0 3px 1px -2px rgba(0, 0, 0, 0.2);
+}
+
+.heroStats-abilityContainer {
+	display: flex;
+	flex-flow: row;
+	justify-content: space-between;
+}
+
+.heroStats-statCollectionContainer {
+	display: flex;
+	flex-flow: row;
+	justify-content: space-between;
+	align-items: center;
+	margin: 15px 0;
+}
+
+.heroStats-main {
+	flex-grow: 1;
+	padding: 0 15px;
+}
+
+.heroStats-statCollection {
+	margin-left: 15px;
+	flex-grow: 1;
+}
+
+.heroStats-stat {
+	display: flex;
+	justify-content: space-between;
+	padding-bottom: 6px;
+	margin: 5px 0;
+	border-bottom: 2px solid rgba( 0, 0, 0, .1);
+}
+
+.heroStats-stat-name {
+	text-align: left;
+	font-weight: bold;
+	flex-grow: 1;
+}
+
+
+.heroStats-stat-value {
+	text-align: right;
+}
+
+
+.heroStats-abilityIcon {
+	background: rgb(44,58,75);
+	width: 48px;
+	height: 48px;
+	border-radius: 50%;
+	padding: 3px;
+	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.heroStats-abilityIcon:hover {
+    animation: important1 1s infinite alternate;
+
+}
+
+.heroStats-abilityIcon::before {
+	position: absolute;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 3px solid white;
+    content: ' ';
+    margin-left: -50%;
+    box-sizing: border-box;
+    transform: scale( .9 );
+    transform-origin: 50%;
+}
+
+.heroStats-abilityIcon > img {
+	width: 70%;
+	height: auto;
+}
+
+@keyframes important1 {
+  to   { background:  #3036D6 }
+}
+
+
